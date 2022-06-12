@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+        <div class="posts">
+            <h1 class="content-subhead">Show post</h1>
+            <a href="javascript:;" onclick="window.history.go(-1)">&lt;- Back</a>
+            <section class="post">
+                <header>
+                    <h2 class="post-title">{{ page.title }}</h2>
+                    <p class="post-meta">{{ page.date | date: "%Y-%m-%d" }}</p>
+                </header>
+                <div class="post-description">
+                    {{ content }}
+                </div>
+            </section>
+        </div>

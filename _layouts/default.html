@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to Pzqqt's Blog.">
+    <meta name="theme-color" content="#3d4f5d">
+    <title>{{ page.title }}</title>
+    <link rel="shortcut icon" href="/static/favicon.ico" /> 
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/purecss@2.1.0/build/grids-responsive-min.css">
+    <link rel="stylesheet" type="text/css" href="/static/blog.css">
+    <link rel="stylesheet" type="text/css" href="/static/colorful.css">
+    <link rel="stylesheet" type="text/css" href="/static/custom.css">
+    <script>
+      window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          document.getElementById("totop").style.display = "block";
+        } else {
+          document.getElementById("totop").style.display = "none";
+        }
+      }
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    </script>
+</head>
+
+<body>
+
+<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+        <div class="header">
+            <a href="/">
+                <img width="96" height="96" style="border-radius: 50px;" src="/static/logo.png">
+            </a>
+            <br>
+            <h1 class="brand-title">Pzqqt's Blog</h1>
+            <h2 class="brand-tagline">Welcome to Pzqqt's Blog</h2>
+
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a class="pure-button" href="https://github.com/Pzqqt" target="_blank">Github</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+
+        {{ content }}
+
+        <div class="footer">
+            <div class="pure-menu pure-menu-horizontal" style="text-align:center;">
+                <div class="pure-menu-link">Powered By</div>
+                <div class="pure-menu-item"><a href="https://purecss.io/" class="pure-menu-link" target="_blank">Pure.css</a></div>
+                <div class="pure-menu-item"><a href="https://pages.github.com/" class="pure-menu-link" target="_blank">GitHub Pages</a></div>
+                <div class="pure-menu-item"><a href="https://jekyllrb.com/" class="pure-menu-link" target="_blank">Jekyll</a></div>
+            </div>
+        </div>
+        <button id="totop" onclick="topFunction()" class="pure-button pure-button-primary totop-button" style="display: none;" title="To top">^</button>
+    </div>
+</div>
+
+</body>
+
+</html>

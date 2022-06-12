@@ -1,0 +1,67 @@
+/* 全局页面缩放 */
+body { zoom: 95%; }
+/* 单行代码 */
+code {
+    color: #2d85ca;
+    padding: 2px 4px;
+    font-size: 90%;
+    background-color: #f0f3f3;
+    border-radius: 4px;
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
+/* 多行代码块 */
+pre.highlight {
+    padding: 0.5em;
+    font-size: 95%;
+    line-height: 150%;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    overflow: auto;
+    overflow-y: hidden;
+    background: #f0f3f3
+}
+pre code {
+    padding: 0px 0px;
+}
+/* 引用 */
+blockquote {
+    border-left: 4px solid #ddd;
+    color: #666;
+    margin: 0;
+    padding: 0 15px;
+}
+/* entry块 */
+.entries {
+    border-left: 10px solid #ccc;
+    padding: 20px 20px 1px;
+    background: #f9f9f9;
+    border-radius: 5px 0 0 5px;
+    margin-bottom: 30px;
+}
+/* entry块内entry标题 */
+.entries-title {
+    border-left: 10px solid #337ab7;
+    padding: 0 0 0 10px;
+    border-radius: 5px 0 0 5px;
+    font-size: 1.8em;
+    margin-bottom: 0.3em;
+    margin-block-start: 0.3em;
+    line-height: 30px;
+}
+/* entry正文标题 */
+.post-title {
+    border-left: 10px solid #337ab7;
+    padding: 0 0 0 10px;
+    border-radius: 5px 0 0 5px;
+}
+.totop-button {
+    position: fixed;
+    bottom: 60px;
+    right: 40px;
+}
+.post-description > p {
+    overflow-x: hidden;
+}
+.task-list-item-checkbox {
+    margin-right: 0.5em;
+}
