@@ -4,11 +4,11 @@ Paradox Kernel is a kernel that suitable for Redmi K30 4G/Poco X2(phoenix/phoeni
 
 ## Features
 
-- Always updating until I don't have device
+- Always updating until I don&#39;t have device
 - Always merge Linux and CAF upstream updates as quickly as possible
 - Always compile with the latest Google clang compiler and the latest and most stable gcc compiler
 - Port some useful features from later versions of Linux kernel (Damon, mglru, etc.)
-- Supports charging by bypassing temperature restrictions to maximize charging speed. Enable "USB fast charging" with any kernel tuning application
+- Supports charging by bypassing temperature restrictions to maximize charging speed. Enable &quot;USB fast charging&quot; with any kernel tuning application
 - Fixed lots of compile-time warnings, and silenced a lot of kernel logspam
 - Free forever, no advertising revenue, no donations accepted
 
@@ -30,8 +30,8 @@ Paradox Kernel is a kernel that suitable for Redmi K30 4G/Poco X2(phoenix/phoeni
 
 ## Note
 
-- In theory it supports the vast majority of AOSP roms. If Paradox Kernel doesn't boot on your rom, please give me feedback
-- Paradox Kernel doesn't provide support for MIUI rom, even if it's able to boot on MIUI, I won't fix any bug that only happens on MIUI
+- In theory it supports the vast majority of AOSP roms. If Paradox Kernel doesn&#39;t boot on your rom, please give me feedback
+- Paradox Kernel doesn&#39;t provide support for MIUI rom, even if it&#39;s able to boot on MIUI, I won&#39;t fix any bug that only happens on MIUI
 
 [Download](https://github.com/Pzqqt/android_kernel_xiaomi_sm6150-1/releases)
 
