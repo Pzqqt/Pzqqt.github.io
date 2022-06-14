@@ -11,6 +11,9 @@ layout: default
                     <p class="post-meta">{{ page.date | date: "%Y-%m-%d" }}</p>
                 </header>
                 <div class="post-description">
+                  {% if page.toc == true %}
+                    {% include toc.html html=content %}
+                  {% endif %}
                     {{ content }}
                 </div>
             </section>
