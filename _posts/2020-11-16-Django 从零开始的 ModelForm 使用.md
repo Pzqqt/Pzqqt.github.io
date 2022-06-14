@@ -1,3 +1,7 @@
+---
+layout: post
+---
+
 {% raw %}
 ## 为什么要使用ModelForm？
 当我刚开始知道Django有模型表单ModelForm这个玩意时其实我是拒绝的，有以下几点原因：

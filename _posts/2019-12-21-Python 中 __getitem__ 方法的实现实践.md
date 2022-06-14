@@ -1,3 +1,7 @@
+---
+layout: post
+---
+
 偶然在网上发现这么一段Python代码：
 ```python
 import numpy as np

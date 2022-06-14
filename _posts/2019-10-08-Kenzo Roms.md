@@ -1,3 +1,7 @@
+---
+layout: post
+---
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 本文备份了[Kenzo资源分享网盘](http://kenzo.ys168.com/)收集的Rom列表
