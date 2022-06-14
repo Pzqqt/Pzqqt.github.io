@@ -1,11 +1,15 @@
 ---
 layout: post
+excerpt_separator: <!--more-->
 ---
 
 {% raw %}
 有些时候我们需要动态生成JavaScript代码，或是在JavaScript代码中使用Django的模板特性。
 
 比如，在JavaScript代码中使用url标签：
+
+<!--more-->
+
 ```javascript
 $(document).ready(function() {
     $('form').submit(function(e) {

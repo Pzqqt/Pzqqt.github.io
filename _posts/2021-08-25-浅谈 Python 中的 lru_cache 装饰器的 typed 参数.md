@@ -1,5 +1,6 @@
 ---
 layout: post
+excerpt_separator: <!--more-->
 ---
 
 稍微了解`lru_cache`装饰器的开发者应该都记得：
@@ -7,6 +8,8 @@ layout: post
 > 当传给`lru_cache`的`typed`参数为真值时，对不同类型的参数将单独缓存（比如`foo(3)`和`foo(3.0)`将分开缓存）
 
 那么这有什么意义呢？在什么情况下需要将`typed`参数设为真值呢？
+
+<!--more-->
 
 要不我们做个假设：如果python标准库中没有`lru_cache`，需要你自己编写一个，你该怎么写？
 

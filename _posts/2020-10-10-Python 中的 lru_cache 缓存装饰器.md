@@ -1,10 +1,14 @@
 ---
 layout: post
+excerpt_separator: <!--more-->
 ---
 
 Python官方文档在介绍`lru_cache`时，举的例子就是斐波那契数列。
 
 不用再介绍什么是斐波那契数列了吧，直接上代码：
+
+<!--more-->
+
 ```python
 def fib(x):
     if x <= 2:

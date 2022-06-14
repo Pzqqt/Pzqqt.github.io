@@ -1,10 +1,13 @@
 ---
 layout: post
+excerpt_separator: <!--more-->
 ---
 
 <div class="pure-g" style="margin-top: 1em;"><a class="pure-u-1 pure-u-md-3-4" href="/images/Paradox_logo.gif"><img class="pure-img-responsive" src="/images/Paradox_logo.gif"></a></div>
 
 Paradox Kernel is a kernel that suitable for Redmi K30 4G/Poco X2(phoenix/phoenixin) devices.
+
+<!--more-->
 
 ## Features
 
