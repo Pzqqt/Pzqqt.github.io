@@ -1,0 +1,27 @@
+---
+layout: default
+title: Tags - Pzqqt's Blog
+---
+
+        {% assign sorted_tags = site.tags | sort %}
+        <div class="posts">
+            <h1 class="content-subhead">All tags</h1>
+            <p style="font-size: 1.25em">
+              {% for tag in sorted_tags %}
+                {% assign tag_name = tag[0] %}
+                {% assign tag_text = tag[0] | append:" (" | append:tag[1].size | append:")" %}
+                {% include tag.html name=tag_name text=tag_text %}
+              {% endfor %}
+            </p>
+          {% for tag in sorted_tags %}
+            <h2 id="tag_{{ tag[0] }}">{{ tag[0] }}</h2>
+            <ul style="line-height: 1.5em;">
+              {% for post in tag[1] %}
+                <li>
+                    {{ post.date | date: "%Y-%m-%d" }}
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endfor %}
+        </div>

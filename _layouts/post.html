@@ -8,7 +8,12 @@ layout: default
             <section class="post">
                 <header>
                     <h2 class="post-title">{{ page.title }}</h2>
-                    <p class="post-meta">{{ page.date | date: "%Y-%m-%d" }}</p>
+                    <p class="post-meta">
+                    {{ page.date | date: "%Y-%m-%d" }}
+                  {% for tag_name in page.tags %}
+                    {% include tag.html name=tag_name %}
+                  {% endfor %}
+                    </p>
                 </header>
                 <div class="post-description">
                   {% if page.toc == true %}

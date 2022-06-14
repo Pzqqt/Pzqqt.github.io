@@ -12,7 +12,12 @@ title: Pzqqt's Blog
                         <h2 class="entries-title">
                             <a href="{{ post.url }}">{{ post.title }}</a>
                         </h2>
-                        <p class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</p>
+                        <p class="post-meta">
+                        {{ post.date | date: "%Y-%m-%d" }}
+                      {% for tag_name in post.tags %}
+                        {% include tag.html name=tag_name %}
+                      {% endfor %}
+                        </p>
                     </header>
                     <div class="post-description">
                         <p>{{ post.excerpt | strip_html }} ...<p>

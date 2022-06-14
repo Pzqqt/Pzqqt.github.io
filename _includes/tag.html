@@ -1,0 +1,12 @@
+{% if include.name == "Python" %}
+  {% assign tag_class = "post-category-pure" %}
+{% elsif include.name == "Android" %}
+  {% assign tag_class = "post-category-design" %}
+{% elsif include.name == "Web" %}
+  {% assign tag_class = "post-category-js" %}
+{% else %}
+  {% assign tag_class = "post-category-yui" %}
+{% endif %}
+<a href="{% if include.url %}{{ include.url }}{% else %}/tags#tag_{{ include.name }}{% endif %}" class="post-category {{ tag_class }}">
+  {% if include.text %}{{ include.text }}{% else %}{{ include.name }}{% endif %}
+</a>
