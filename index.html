@@ -21,13 +21,17 @@ title: Pzqqt's Blog
               {% endfor %}
             <div class="pure-g">
                 <div class="pure-u-2-5">
+                  {% if paginator.previous_page != nil %}
                     <a href="{{ paginator.previous_page_path }}" class="pure-button pure-button-primary" style="float: right; margin-top: 0.5em;">&lt;- Previous</a>
+                  {% endif %}
                 </div>
                 <div class="pure-u-1-5">
                     <p style="text-align: center;">Page {{ paginator.page }}/{{ paginator.total_pages }}</p>
                 </div>
                 <div class="pure-u-2-5">
+                  {% if paginator.next_page != nil %}
                     <a href="{{ paginator.next_page_path }}" class="pure-button pure-button-primary" style="float: left; margin-top: 0.5em;">Next -&gt;</a>
+                  {% endif %}
                 </div>
             </div>
         </div>
