@@ -1,5 +1,6 @@
 ---
 layout: post
+tags: Python
 excerpt_separator: <!--more-->
 ---
 
