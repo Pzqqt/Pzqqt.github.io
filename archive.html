@@ -1,0 +1,29 @@
+---
+layout: default
+title: Archive - Pzqqt's Blog
+---
+
+        <div class="posts">
+            <h1 class="content-subhead">Archive</h1>
+            <p>Total posts: {{ site.posts.size }}</p>
+
+          {% for post in site.posts %}
+            {% if post.next == nil %}
+                <h2>{{ post.date | date: '%Y' }}</h2>
+                <ul style="line-height: 1.5em;">
+            {% else %}
+              {% assign year = post.date | date: '%Y' %}
+              {% assign next_year = post.next.date | date: '%Y' %}
+              {% if year != next_year %}
+                </ul>
+                <h2>{{ year }}</h2>
+                <ul style="line-height: 1.5em;">
+              {% endif %}
+            {% endif %}
+                    <li>
+                        {{ post.date | date: "%m-%d" }}
+                        <a href="{{ post.url }}">{{ post.title }}</a>
+                    </li>
+          {% endfor %}
+
+        </div>
