@@ -5,6 +5,7 @@ excerpt_separator: <!--more-->
 ---
 
 ## 为什么要使用ModelForm？
+
 当我刚开始知道Django有模型表单ModelForm这个玩意时其实我是拒绝的，有以下几点原因：
 
 1. 把简单的事情复杂化：前端提供表单，后端`request.POST`接收表单数据，然后写入数据库，这么简单的事为啥我还要特地编写和配置一个ModelForm呢？<!--more-->
@@ -25,7 +26,9 @@ excerpt_separator: <!--more-->
 - 对于问题4：在继承的ModelForm类中，可以非常直观地对各项表单字段进行个别配置，易于维护，并且深入了解后就会发现，ModelForm其实可以非常自♂由地调整表单字段的属性。
 
 ## 定义模型表单
+
 举个栗子，在当前应用中新建一个forms.py文件，然后开始编写模型表单类：
+
 ```python
 # forms.py
 from django import forms
@@ -49,7 +52,7 @@ class OrderForm(forms.ModelForm):
 在这里我们创建了一个订单（Order）的模型表单类，这个类继承自`django.forms.ModelForm`。
 
 在OrderForm中我们又定义了一个Meta类，顾名思义，在这个类中编写的是OrderForm类的元数据。其中：
-    
+
 - `model`属性为你要关联的模型。
 - `fields`属性为表单所包含的字段，有些字段我们不希望由用户填写（比如订单的创建时间），在这里我们就可以把它排除掉。
 - `widgets`属性值为一个字典，我们可以在这里自定义某些表单字段类型，比如客户备注（"customer_remark"）字段，在模型中我定义为CharField，在渲染时就会显示为`<input>`标签，但我希望将它渲染成`<textarea>`，那么在这里设置就好了。
@@ -61,7 +64,9 @@ class OrderForm(forms.ModelForm):
 > 除了以上提到的元属性，还有`labels` `help_texts` `error_messages` `localized_fields`等属性可以定制，在此不再细讲。
 
 ## 后端处理
+
 在视图函数中应该如何使用呢？还是直接举例
+
 ```python
 # views.py
 from django.shortcuts import render, redirect
@@ -96,6 +101,7 @@ def add_order(request):
             )
         return redirect("order:add_order")
 ```
+
 1. 在处理GET请求时，我们生成一个OrderForm对象，然后传递给模板由模板进行渲染，关于在模板中如何渲染表单稍后再讲。
 2. 在处理POST请求时，使用`OrderForm(request.POST)`即可获得保存了表单提交数据的OrderForm对象。
 3. 对该对象调用`is_valid()`方法之后即可判断表单数据是否合法，比如模型的某个字段为EmailField，如果你用的是传统方法，那么在后端你需要编写一个长长的正则表达式来判断用户输入的是不是一个合法的邮箱地址，但现在我们不需要了，一个`is_valid()`方法就可以完成对所有表单项的合法性判断。
@@ -106,7 +112,9 @@ def add_order(request):
 
 {% raw %}
 ## 前端渲染
+
 ModelForm在前端该如何被渲染？先试试直接渲染ModelForm对象：
+
 ```html
           {% block content %}
             <form action="{% url 'order:add_order' %}" class="pure-form pure-form-stacked" method="post">
@@ -118,6 +126,7 @@ ModelForm在前端该如何被渲染？先试试直接渲染ModelForm对象：
             </form>
           {% endblock %}
 ```
+
 效果如下：
 
 {% endraw %}
@@ -125,6 +134,7 @@ ModelForm在前端该如何被渲染？先试试直接渲染ModelForm对象：
 {% raw %}
 
 好像看起来有点太整齐了。我们可以对每个表单字段进行渲染，在这里我们用[PureCSS](https://purecss.io/)的网格布局对各个表单项进行布局：
+
 ```html
           {% block content %}
             <form action="{% url 'order:add_order' %}" class="pure-form pure-form-stacked" method="post">
@@ -176,6 +186,7 @@ ModelForm在前端该如何被渲染？先试试直接渲染ModelForm对象：
             </form>
           {% endblock %}
 ```
+
 现在的效果如下：
 
 {% endraw %}
@@ -189,13 +200,17 @@ ModelForm在前端该如何被渲染？先试试直接渲染ModelForm对象：
 > 对于模型字段中没有定义`blank`属性的字段（即不允许该字段值为空字符串），在渲染表单时会自动加上`required`属性，表示该项为必填项。
 
 ## 对ModelForm进行进一步配置
+
 还是举个例子：模型Order中的fee字段定义为FloatField，即浮点数，但经过OrderForm在前端渲染后，它渲染得和IntegerField一样，而且，在现代化的浏览器中，如果在该`<input>`标签中输入浮点数后提交表单，会提示用户输入整数并且拒绝提交。
 
 解决方法就是在渲染的`<input>`中加一项步长`step`属性，如果要求输入值精确到1位小数，则设置`step`属性为0.1，两位小数则为0.01，以此类推。
+
 ```html
 <input type="number" name="fee" step="0.1" required id="id_fee">
 ```
+
 如何在OrderForm中直接定义好呢？可以在`__init__`方法中进行：
+
 ```python
 # forms.py
 
@@ -210,4 +225,5 @@ class OrderForm(forms.ModelForm):
     class Meta:
         ...
 ```
+
 这样，我们就可以方便直观地对表单项进行定制了。

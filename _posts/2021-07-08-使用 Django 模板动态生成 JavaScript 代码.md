@@ -34,6 +34,7 @@ $(document).ready(function() {
 ```
 
 或者使用if标签：
+
 ```javascript
 $(document).ready(function() {
     $('#button').onclick(function() {
@@ -50,6 +51,7 @@ $(document).ready(function() {
 这样写JavaScript代码可能会有点...奇怪，不仅开发者觉得奇怪，IDE 也会觉得奇怪。
 
 还有一个更极端的做法：把代码写到一个js文件中，然后在views.py中编写一个视图函数，用render函数“渲染”这个js文件：
+
 ```python
 # views.py
 def foo_js(request):
@@ -93,6 +95,7 @@ $(document).ready(function() {
 这样做并没有什么问题，但是聪明的IDE会给你报一堆语法错误...有什么办法呢？
 
 ## 1. 把代码写在html的script标签里
+
 ```html
 <script>
 $(document).ready(function() {
@@ -109,6 +112,7 @@ $(document).ready(function() {
 这两个问题可以使用Django的自定义模板标签（`inclusion_tag`）来解决。
 
 注册并定义模板标签：
+
 ```python
 # app/templatetags/app_extras.py
 from django import template
@@ -122,6 +126,7 @@ def foo(string):
 ```
 
 编写该模板标签的渲染模板（注意外侧用`<script>`包裹）：
+
 ```html
 <!-- app/templates/app/_inclusions/foo.html -->
 <script>
@@ -133,6 +138,7 @@ $(document).ready(function() {
 ```
 
 使用此模板标签：
+
 ```html
 <!-- app/templates/app/bar.html -->
 {% load app_extras %}

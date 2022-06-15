@@ -24,6 +24,7 @@ def fib(x):
 `lru_cache`装饰器的作用，就是让该函数“记住”之前代入某参数后运行**返回的结果**。之前计算过`fib(3)`，那么下次再计算`fib(3)`时就不用再走计算的过程了，直接返回结果。
 
 该装饰器的用法很简单：
+
 ```python
 from functools import lru_cache
 
@@ -42,6 +43,7 @@ def fib(x):
 - `typed`：为`True`时则对于不同类型的参数将单独缓存（比如`f(3)`和`f(3.0)`将分开缓存），默认值为`False`。
 
 `lru_cache`虽然很强大，但也有一些局限性，举个例子：
+
 ```python
 from functools import lru_cache
 from time import sleep
