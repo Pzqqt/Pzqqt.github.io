@@ -158,14 +158,15 @@ $(document).ready(function() {
 });
 // </script>
 ```
+{% endraw %}
 
 这样一来，IDE把我们刚才插入的`<script>`和`</script>`识别为了html标签，写在`<script>`里的JavaScript代码即使使用了模板标签也不会报语法错误。
 
-<a href="/images/e29_js_idea.png"><img class="pure-img-responsive" src="/images/e29_js_idea.png"></a>
+{% include pure-img-responsive.html url="/images/e29_js_idea.png" a_class="pure-u-md-3-4" %}
 
 而浏览器会把`// <script>`和`// </script>`当作注释，不会影响JavaScript代码的功能。
 
-<a href="/images/e29_js_chrome.png"><img class="pure-img-responsive" src="/images/e29_js_chrome.png"></a>
+{% include pure-img-responsive.html url="/images/e29_js_chrome.png" a_class="pure-u-md-3-4" %}
 
 妙！（好吧...我承认这更像是歪门邪道中的歪门邪道...）
 
@@ -174,4 +175,3 @@ $(document).ready(function() {
 <del>少量、且不会复用的JavaScript代码，还是老老实实嵌入到html里吧...</del>根据实际情况和需求，选择最适合的解决方法吧。
 
 *[IDE]: Integrated development environment, 集成开发环境
-{% endraw %}

@@ -4,7 +4,6 @@ tags: Python Web
 excerpt_separator: <!--more-->
 ---
 
-{% raw %}
 ## 为什么要使用ModelForm？
 当我刚开始知道Django有模型表单ModelForm这个玩意时其实我是拒绝的，有以下几点原因：
 
@@ -105,6 +104,7 @@ def add_order(request):
 
 > `errors`属性为一个`django.forms.utils.ErrorDict`对象（本质上就是个字典，可以进行遍历），对该对象调用不同的方法可以返回不同格式的数据，比如`as_json()`返回json格式的数据，`as_ul()`返回html格式的字符串，`as_text()`返回格式化好的纯文本字符串，等等。
 
+{% raw %}
 ## 前端渲染
 ModelForm在前端该如何被渲染？先试试直接渲染ModelForm对象：
 ```html
@@ -120,7 +120,9 @@ ModelForm在前端该如何被渲染？先试试直接渲染ModelForm对象：
 ```
 效果如下：
 
-<a href="/images/e26_01.jpg"><img class="pure-img-responsive" src="/images/e26_01.jpg"></a>
+{% endraw %}
+{% include pure-img-responsive.html url="/images/e26_01.jpg" a_class="pure-u-md-3-4" %}
+{% raw %}
 
 好像看起来有点太整齐了。我们可以对每个表单字段进行渲染，在这里我们用[PureCSS](https://purecss.io/)的网格布局对各个表单项进行布局：
 ```html
@@ -176,7 +178,8 @@ ModelForm在前端该如何被渲染？先试试直接渲染ModelForm对象：
 ```
 现在的效果如下：
 
-<a href="/images/e26_02.jpg"><img class="pure-img-responsive" src="/images/e26_02.jpg"></a>
+{% endraw %}
+{% include pure-img-responsive.html url="/images/e26_02.jpg" a_class="pure-u-md-3-4" %}
 
 是不是感觉上面的代码有点太过重复了？有两个办法：
 
@@ -208,4 +211,3 @@ class OrderForm(forms.ModelForm):
         ...
 ```
 这样，我们就可以方便直观地对表单项进行定制了。
-{% endraw %}
