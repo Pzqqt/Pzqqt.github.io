@@ -10,7 +10,7 @@ title: Tags - Pzqqt's Blog
             <p style="font-size: 1.25em; display: flex; flex-wrap: wrap; justify-content: flex-start;">
               {% for tag in sorted_tags %}
                 {% assign tag_name = tag[0] %}
-                {% assign tag_text = tag[0] | append:" (" | append:tag[1].size | append:")" %}
+                {% capture tag_text %}{{ tag[0] }} ({{ tag[1].size }}){% endcapture %}
                 {% include tag.html name=tag_name text=tag_text %}
               {% endfor %}
             </p>
