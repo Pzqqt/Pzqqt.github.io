@@ -9,6 +9,4 @@
 {% else %}
   {% assign tag_class = "" %}
 {% endif %}
-<a href="{% if include.url %}{{ include.url }}{% else %}/tags#tag_{{ include.name }}{% endif %}" class="post-category {{ tag_class }}">
-  {% if include.text %}{{ include.text }}{% else %}{{ include.name }}{% endif %}
-</a>
+<a href="/tags#tag_{{ include.name }}" class="post-category {{ tag_class }}">{{ include.text | default:include.name }}</a>
