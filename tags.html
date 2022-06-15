@@ -6,6 +6,7 @@ title: Tags - Pzqqt's Blog
         {% assign sorted_tags = site.tags | sort %}
         <div class="posts">
             <h1 class="content-subhead">All tags</h1>
+            <h2>All tags</h2>
             <p style="font-size: 1.25em; display: flex; flex-wrap: wrap; justify-content: flex-start;">
               {% for tag in sorted_tags %}
                 {% assign tag_name = tag[0] %}
@@ -14,7 +15,7 @@ title: Tags - Pzqqt's Blog
               {% endfor %}
             </p>
           {% for tag in sorted_tags %}
-            <h2 id="tag_{{ tag[0] }}">{{ tag[0] }}</h2>
+            <h2 class="post-title" id="tag_{{ tag[0] }}">{{ tag[0] }}</h2>
             <ul style="line-height: 1.5em;">
               {% for post in tag[1] %}
                 <li>
