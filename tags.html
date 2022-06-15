@@ -20,7 +20,7 @@ title: Tags - Pzqqt's Blog
               {% for post in tag[1] %}
                 <li>
                     {{ post.date | date: "%Y-%m-%d" }}
-                    <a href="{{ post.url }}">{{ post.title }}</a>
+                    <a href="{{ post.url }}">{{ post.slug }}</a>
                 </li>
               {% endfor %}
             </ul>

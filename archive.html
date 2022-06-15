@@ -22,7 +22,7 @@ title: Archive - Pzqqt's Blog
             {% endif %}
                     <li>
                         {{ post.date | date: "%m-%d" }}
-                        <a href="{{ post.url }}">{{ post.title }}</a>
+                        <a href="{{ post.url }}">{{ post.slug }}</a>
                     </li>
           {% endfor %}
 
