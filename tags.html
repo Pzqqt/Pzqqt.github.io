@@ -6,7 +6,7 @@ title: Tags - Pzqqt's Blog
         {% assign sorted_tags = site.tags | sort %}
         <div class="posts">
             <h1 class="content-subhead">All tags</h1>
-            <p style="font-size: 1.25em">
+            <p style="font-size: 1.25em; display: flex; flex-wrap: wrap; justify-content: flex-start;">
               {% for tag in sorted_tags %}
                 {% assign tag_name = tag[0] %}
                 {% assign tag_text = tag[0] | append:" (" | append:tag[1].size | append:")" %}
