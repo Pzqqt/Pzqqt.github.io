@@ -8,6 +8,7 @@ code {
     background-color: #f0f3f3;
     border-radius: 4px;
     font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+    margin: 4px;
 }
 /* 多行代码块 */
 pre.highlight {
@@ -22,6 +23,7 @@ pre.highlight {
 }
 pre code {
     padding: 0px 0px;
+    margin: 0;
 }
 /* 引用 */
 blockquote {
