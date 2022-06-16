@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Welcome to Pzqqt's Blog.">
     <meta name="theme-color" content="#3d4f5d">
-    <title>{{ page.title }}</title>
+    <title>{% if page.slug %}{{ page.slug }} - {% elsif page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
     <link rel="shortcut icon" href="/static/favicon.ico" /> 
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/purecss@2.1.0/build/grids-responsive-min.css">
