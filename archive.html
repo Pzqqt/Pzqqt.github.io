@@ -23,5 +23,8 @@ title: Archive
                     {{ post.date | date: "%m-%d" }}
                     <a href="{{ post.url }}">{{ post.slug }}</a>
                 </li>
+          {% if post.previous == nil %}
+            </ul>
+          {% endif %}
       {% endfor %}
 
