@@ -4,25 +4,23 @@ title: Tags
 ---
 
         {% assign sorted_tags = site.tags | sort %}
-        <div class="posts">
-            <h1 class="content-subhead">All tags</h1>
-            <h2>All tags</h2>
-            <p style="font-size: 1.25em; display: flex; flex-wrap: wrap; justify-content: flex-start;">
-              {% for tag in sorted_tags %}
-                {% assign tag_name = tag[0] %}
-                {% capture tag_text %}{{ tag[0] }} ({{ tag[1].size }}){% endcapture %}
-                {% include tag.html name=tag_name text=tag_text %}
-              {% endfor %}
-            </p>
+        <h1 class="content-subhead">All tags</h1>
+        <h2>All tags</h2>
+        <p style="font-size: 1.25em; display: flex; flex-wrap: wrap; justify-content: flex-start;">
           {% for tag in sorted_tags %}
-            <h2 class="post-title" id="tag_{{ tag[0] }}">{{ tag[0] }}</h2>
-            <ul style="line-height: 1.5em;">
-              {% for post in tag[1] %}
-                <li>
-                    {{ post.date | date: "%Y-%m-%d" }}
-                    <a href="{{ post.url }}">{{ post.slug }}</a>
-                </li>
-              {% endfor %}
-            </ul>
+            {% assign tag_name = tag[0] %}
+            {% capture tag_text %}{{ tag[0] }} ({{ tag[1].size }}){% endcapture %}
+            {% include tag.html name=tag_name text=tag_text %}
           {% endfor %}
-        </div>
+        </p>
+      {% for tag in sorted_tags %}
+        <h2 class="post-title" id="tag_{{ tag[0] }}">{{ tag[0] }}</h2>
+        <ul style="line-height: 1.5em;">
+          {% for post in tag[1] %}
+            <li>
+                {{ post.date | date: "%Y-%m-%d" }}
+                <a href="{{ post.url }}">{{ post.slug }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}

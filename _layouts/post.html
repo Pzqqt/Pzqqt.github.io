@@ -2,25 +2,23 @@
 layout: default
 ---
 
-        <div class="posts">
-            <h1 class="content-subhead">Show post</h1>
-            <a href="javascript:;" onclick="window.history.go(-1)">&lt;- Back</a>
-            <section class="post">
-                <header>
-                    <h2 class="post-title">{{ page.slug }}</h2>
-                    <p class="post-meta">
-                    {{ page.date | date: "%Y-%m-%d" }}
-                  {% for tag_name in page.tags %}
-                    {% include tag.html name=tag_name %}
-                  {% endfor %}
-                    </p>
-                </header>
-                <div class="post-description">
-                  {% if page.toc == true %}
-                    {% include toc.html html=content %}
-                    <hr>
-                  {% endif %}
-                    {{ content }}
-                </div>
-            </section>
-        </div>
+        <h1 class="content-subhead">Show post</h1>
+        <a href="javascript:;" onclick="window.history.go(-1)">&lt;- Back</a>
+        <section class="post">
+            <header>
+                <h2 class="post-title">{{ page.slug }}</h2>
+                <p class="post-meta">
+                {{ page.date | date: "%Y-%m-%d" }}
+              {% for tag_name in page.tags %}
+                {% include tag.html name=tag_name %}
+              {% endfor %}
+                </p>
+            </header>
+            <div class="post-description">
+              {% if page.toc == true %}
+                {% include toc.html html=content %}
+                <hr>
+              {% endif %}
+                {{ content }}
+            </div>
+        </section>
