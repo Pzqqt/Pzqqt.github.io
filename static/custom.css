@@ -56,6 +56,14 @@ blockquote {
     padding: 0 0 0 10px;
     border-radius: 5px 0 0 5px;
 }
+/* 分页栏 */
+.paginator {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
+    /* 使用等宽字体 */
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
 .totop-button {
     position: fixed;
     bottom: 60px;
