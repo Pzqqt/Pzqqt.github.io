@@ -75,3 +75,15 @@ blockquote {
 .task-list-item-checkbox {
     margin-right: 0.5em;
 }
+/* footer格言 */
+#motto {
+    white-space: normal;
+    font-size: 80%;
+    color: #ccc;
+}
+@media (max-width: 48em) {
+    #motto {
+        /* 窄屏时motto靠左对齐 */
+        text-align: left;
+    }
+}
