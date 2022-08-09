@@ -24,14 +24,14 @@ layout: default
           {% endfor %}
         <div class="paginator">
           {% if paginator.previous_page != nil %}
-            <a href="{{ paginator.previous_page_path }}" class="pure-button pure-button-primary">&lt;- Prev</a>
+            <a href="{{ paginator.previous_page_path }}" class="pure-button pure-button-primary" style="width: 6em;">&lt;- Prev</a>
           {% else %}
-            <a href="javascript:;" class="pure-button pure-button-disabled">&lt;- Prev</a>
+            <a href="javascript:;" class="pure-button pure-button-disabled" style="width: 6em;">&lt;- Prev</a>
           {% endif %}
             <p>Page {{ paginator.page }}/{{ paginator.total_pages }}</p>
           {% if paginator.next_page != nil %}
-            <a href="{{ paginator.next_page_path }}" class="pure-button pure-button-primary">Next -&gt;</a>
+            <a href="{{ paginator.next_page_path }}" class="pure-button pure-button-primary" style="width: 6em;">Next -&gt;</a>
           {% else %}
-            <a href="javascript:;" class="pure-button pure-button-disabled">Next -&gt;</a>
+            <a href="javascript:;" class="pure-button pure-button-disabled" style="width: 6em;">Next -&gt;</a>
           {% endif %}
         </div>

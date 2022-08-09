@@ -61,8 +61,6 @@ blockquote {
     display: flex;
     align-items: baseline;
     justify-content: space-evenly;
-    /* 使用等宽字体 */
-    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
 }
 .totop-button {
     position: fixed;
