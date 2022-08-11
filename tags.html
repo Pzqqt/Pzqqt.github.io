@@ -5,8 +5,7 @@ title: Tags
 
         {% assign sorted_tags = site.tags | sort %}
         <h1 class="content-subhead">All tags</h1>
-        <h2>All tags</h2>
-        <p style="font-size: 1.25em; display: flex; flex-wrap: wrap; justify-content: flex-start;">
+        <p style="font-size: 1.2em; display: flex; flex-wrap: wrap; justify-content: flex-start;">
           {% for tag in sorted_tags %}
             {% assign tag_name = tag[0] %}
             {% capture tag_text %}{{ tag[0] }} ({{ tag[1].size }}){% endcapture %}
