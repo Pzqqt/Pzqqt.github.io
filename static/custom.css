@@ -70,8 +70,7 @@ blockquote {
 .task-list-item-checkbox {
     margin-right: 0.5em;
 }
-/* footer格言 */
-#motto {
+.footer-text {
     white-space: normal;
     font-size: 80%;
     color: #ccc;
