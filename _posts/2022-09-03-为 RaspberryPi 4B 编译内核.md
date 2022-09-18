@@ -158,7 +158,7 @@ total 28612
 drwxr-xr-x 2 pzqqt pzqqt    12288 Sep  2 16:51 overlays
 ```
 
-把这个目录整个拷贝到U盘里，或者想办法直接发送到你的RaspberryPi上，准备安装。
+把这个目录发送到你的RaspberryPi上（用U盘中转，或者scp直接发送，方法有很多），准备安装。
 
 首先要搞明白，内核、dtb位于`/boot`目录，dtbo文件位于`/boot/overlays`目录，内核模块位于`/lib/modules`目录。
 
@@ -167,11 +167,11 @@ drwxr-xr-x 2 pzqqt pzqqt    12288 Sep  2 16:51 overlays
 为了防止意外，务必提前备份它们：
 
 ```shell
-mkdir -p /boot/BACKUP
-rm -rf /boot/BACKUP/*
-cp /boot/kernel8.img /boot/BACKUP/
-cp /boot/*.dtb /boot/BACKUP/
-cp -r /boot/overlays /boot/BACKUP/
+sudo mkdir -p /boot/BACKUP
+sudo rm -rf /boot/BACKUP/*
+sudo cp /boot/kernel8.img /boot/BACKUP/
+sudo cp /boot/*.dtb /boot/BACKUP/
+sudo cp -r /boot/overlays /boot/BACKUP/
 ```
 
 内核模块不用备份，别把官方内核的内核模块给删了就行。
@@ -200,7 +200,7 @@ sudo tar -xzf ./modules.tar.gz -C /lib/modules/
 
 完成之后，重启RaspberryPi，成功开机后，执行`cat /proc/version`查看内核版本。
 
-如果不幸翻车了，取下TF卡，把我们之前备份的内核、dtb、dtbo还原回去就可以了。
+如果不幸翻车了，取下TF卡，想办法把我们之前备份的内核、dtb、dtbo还原回去就可以了。
 
 值得一提的是，有时候你在用软件包管理器更新系统软件包时，内核也会一并更新。如果你还想使用自己编译的内核的话，按照上面的步骤重新安装内核、dtb、dtbo就可以了。
 
