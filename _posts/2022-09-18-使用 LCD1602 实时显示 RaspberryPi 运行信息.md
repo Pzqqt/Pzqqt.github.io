@@ -12,21 +12,21 @@ excerpt_separator: <!--more-->
 
 <!--more-->
 
-把ssh和vnc整好之后，很快地就把爬虫部署好了。然后看着这台RaspberryPi，我陷入了茫然，不对，是陷入了回忆。
+把ssh和vnc整好之后，很快就把爬虫部署好了。然后看着这台RaspberryPi，我陷入了茫然，不对，是陷入了回忆。
 
 看着那两排40个GPIO针脚，让我回忆起了大学时代整天摆弄洞洞板、电烙铁、C51单片机、LED灯的时光。
 
-突然想起之前买C51开发学习板送的有一块LCD1602液晶屏在那闲置着，那为什么不物尽其用呢？用它显示一些设备运行时的信息，岂不美哉？
+突然想起以前买C51开发板送的有一块LCD1602液晶屏还在那闲置着，那为什么不物尽其用呢？用它显示一些设备运行时的信息，岂不美哉？
 
 说干就干！
 
 # 编程语言的选择
 
-说实话，控制LCD1602最好是使用C语言或者汇编语言，~~因为它们跑得比xxxx都快~~，因为我有使用C51单片机控制LCD1602的开发经验。
+说实话，控制LCD1602最好是使用C语言或者汇编语言，~~因为它们跑得比xxxx都快~~。
 
 但是还有个问题不得不考虑，如果要用LCD1602显示时间或系统各种资源的占用情况，那用C语言怎么获取这些信息？
 
-所以，还是应该使用高级编程语言进行开发。那我就选择我最喜欢的Python啦！
+所以，还是应该使用高级编程语言进行开发。那就选择我最喜欢的Python啦！
 
 # 引脚与接线
 
@@ -39,11 +39,11 @@ excerpt_separator: <!--more-->
 - 1脚：GND，电源地，直接接地。
 - 2脚：VCC，电源正极，为液晶屏提供主供电，接到提供5V电压的引脚上。
 - 3脚：VO，液晶显示偏压脚，用来控制液晶屏显示的对比度，接地时对比度最高，接正电源时对比度最低。对比度太高或者太低的话，看字符都会很困难。这里将此脚接地，并接上一个10KΩ的电位器用来随时调整对比度，没电位器的话就用各种不同阻值的电阻试一下。
-- 4脚：RS，寄存器选择脚，高电平时传数据，低电平时传指令，需要接到一个普通的GPIO引脚上。
+- 4脚：RS，寄存器选择脚，高电平时传数据，低电平时传指令，接到一个普通的GPIO引脚上。
 - 5脚：RW，读写选择脚，高电平时进行读操作，低电平时进行写操作，这里我们不需要读取液晶屏上显示的字符，所以直接接地。
-- 6脚：E，使能信号脚，当E脚从高电平变为低电平时，液晶屏执行命令，需要接到一个普通的GPIO引脚上。
-- 7~14脚：D0~D7，8位双向数据脚，需要接到普通的GPIO引脚上。也可以选择使用4 Bits模式，只接D4~D7四个引脚。
-- 15脚：BLA，背光电源正极，3.3v即可，可以接到提供3.3V电压的引脚上，也可以接到一个普通的GPIO引脚上（GPIO引脚能够提供3.3V的电压，这样做就可以实现在程序里控制背光开关）。
+- 6脚：E，使能信号脚，当E脚从高电平变为低电平时，液晶屏执行命令，接到一个普通的GPIO引脚上。
+- 7~14脚：D0~D7，8位双向数据脚，接到普通的GPIO引脚上。也可以选择使用4 Bits模式，只接D4~D7四个引脚（以下程序都是在使用4 Bits模式的前提下编写的）。
+- 15脚：BLA，背光电源正极，3.3v即可，可以接到提供3.3V电压的引脚上，也可以接到一个普通的GPIO引脚上（GPIO引脚能够提供3.3V的电压，这样就可以实现在程序里控制背光开关了）。
 - 16脚：BLK，背光电源负极，直接接地。
 
 # 程序的编写
@@ -185,7 +185,7 @@ def lcd_cleanup():
 
 `LCD_RS` `LCD_E` `LCD_D4` `LCD_D5` `LCD_D6` `LCD_D7`这些常量应该根据自己实际接的GPIO引脚编号进行定义。
 
-保存为`lcd1602.py`文件，作为Python模块供其他Python调用。
+保存为`lcd1602.py`文件，作为Python模块供其他Python程序调用。
 
 实际使用到的只有4个函数：
 
@@ -194,7 +194,7 @@ def lcd_cleanup():
   - 第一个参数是要写入的字符串；
   - 第二个参数是要写入第几行（`LCD_LINE_1`：写入第一行，`LCD_LINE_2`：写入第二行）；
   - 第三个参数为真值时，长度大于16的字符串会在所在行滚动显示。
-- `lcd_custom_char`：自定义字符，具体请自行查阅资料。
+- `lcd_custom_char`：自定义字符，具体请自行查阅相关资料。
 - `lcd_cleanup`：清理，最好在程序结束时调用一下。
 
 试一下让LCD1602显示Hello world。
@@ -221,7 +221,7 @@ lcd_string("Hello world!", LCD_LINE_1)
 - 主机名
 - IP地址
 
-时间的话，用Python标准库中的`datetime`模块就可以搞定。
+时间的话，用Python标准库中的`datetime`库就可以搞定。
 
 设备的基本信息，可以通过Python内置库中的`gpiozero.pins.data.pi_info`函数获取：
 
@@ -402,10 +402,10 @@ def main():
 
         # 显示RAM占用情况
         lcd_string("RAM total: %s" % RAM_TOTAL_HUMAN_READABLE, LCD_LINE_1)
-        for i in range(3):
+        for _ in range(3):
             lcd_string("RAM used: %s" % size_human_readable(psutil.virtual_memory().used), LCD_LINE_2)
             time.sleep(1)
-        for i in range(3):
+        for _ in range(3):
             lcd_string("RAM used: %0.1f%%" % psutil.virtual_memory().percent, LCD_LINE_2)
             time.sleep(1)
 
@@ -432,8 +432,7 @@ def main():
         time.sleep(3)
 
         # 显示各个网卡设备的IP地址
-        for item in get_ips():
-            iface_name, ip_ = item
+        for iface_name, ip_ in get_ips():
             lcd_string("iface: " + iface_name, LCD_LINE_1)
             lcd_string(ip_, LCD_LINE_2)
             time.sleep(3)
