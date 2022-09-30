@@ -14,11 +14,11 @@ code {
 pre.highlight {
     padding: 0.5em;
     font-size: 95%;
-    line-height: 150%;
+    line-height: 125%;
     border: 1px solid #bbb;
     border-radius: 4px;
+    max-height: 30em;
     overflow: auto;
-    overflow-y: hidden;
     background: #f0f3f3
 }
 pre code {
