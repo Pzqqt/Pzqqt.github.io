@@ -262,7 +262,6 @@ import subprocess
 from socket import AF_INET
 try:
     from gpiozero.pins.data import pi_info
-    from gpiozero.pins.local import get_pi_revision
 except ImportError:
     raise ImportError("This doesn't appear to be a Raspberry Pi device!")
 

@@ -23,7 +23,7 @@ Linux version 5.15.61-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc-8 (Ubuntu/Linaro
 
 > 温馨提示：强烈不建议在RaspberryPi上编译内核，一是RaspberryPi性能孱弱，二是TF卡读写速度感人（有人尝试过在RaspberryPi上编译内核，编译过程耗时3个小时...）。建议找一台性能足够的PC进行交叉编译。
 
-## 准备工作
+# 准备工作
 
 首先，从 [raspberrypi/linux](https://github.com/raspberrypi/linux) 拉取源码。当前官方使用的是5.15版本的内核，所以我们只需拉取`rpi-5.15.y`分支即可。
 
@@ -47,7 +47,7 @@ git clone https://github.com/Pzqqt/kernel_raspberrypi_4b.git -b rpi-5.15.y
 
 什么？你想使用clang编译内核？当然可以！如果你使用的是ClangBuiltLinux Clang的话（比如 [Proton Clang](https://github.com/kdrag0n/proton-clang) ），那可以省略上述的下载安装gcc工具链的步骤。
 
-## 编译
+# 编译
 
 打开终端，cd到内核源码目录。
 
@@ -132,7 +132,7 @@ sudo env PATH="$PATH" make -j6 \
 sudo tar -czf /home/pzqqt/kr4b_release/modules.tar.gz -C ${OUT_MODULES}/lib/modules .
 ```
 
-## 安装
+# 安装
 
 在之前的编译阶段，我们把编译产物都放到了编译机上的`/home/pzqqt/kr4b_release`目录：
 
@@ -178,7 +178,7 @@ sudo cp -r /boot/overlays /boot/BACKUP/
 
 然后，在RaspberryPi上打开终端，cd到我们拷贝到这里的编译产物所在的目录。
 
-### 安装内核、dtb、dtbo
+## 安装内核、dtb、dtbo
 
 ```shell
 echo "- Installing kernel..."
@@ -191,7 +191,7 @@ sudo cp ./*.dtb /boot/
 sudo cp -rf ./overlays /boot/
 ```
 
-### 安装内核模块
+## 安装内核模块
 
 ```shell
 echo "- Installing kernel modules..."
