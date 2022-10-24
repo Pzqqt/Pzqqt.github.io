@@ -45,8 +45,6 @@ git clone https://github.com/Pzqqt/kernel_raspberrypi_4b.git -b rpi-5.15.y
 
 根据你的编译机环境，选择对应的版本。下载之后，找个地方解压。
 
-什么？你想使用clang编译内核？当然可以！如果你使用的是ClangBuiltLinux Clang的话（比如 [Proton Clang](https://github.com/kdrag0n/proton-clang) ），那可以省略上述的下载安装gcc工具链的步骤。
-
 # 编译
 
 打开终端，cd到内核源码目录。
@@ -58,32 +56,19 @@ git clone https://github.com/Pzqqt/kernel_raspberrypi_4b.git -b rpi-5.15.y
 在终端执行：
 
 ```shell
-# CROSS_COMPILE参数是你的交叉编译工具链
-# 如果你使用的是从网上下载的gcc编译器, 记得要么填完整的绝对路径, 要么把它加到PATH环境变量里
-export PATH=/home/pzqqt/build_toolchain/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:${PATH}
-
-make ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu- bcm2711_defconfig
-```
-
-如果你要使用clang编译：
-
-```shell
-# 提前把你的clang工具链加到PATH环境变量中
-export PATH=/home/pzqqt/build_toolchain/clang-r458507-15.0.1/bin:${PATH}
-
-# 然后加上`LLVM=1`参数
-make ARCH=arm64 LLVM=1 CROSS_COMPILE=aarch64-none-linux-gnu- bcm2711_defconfig
+make ARCH=arm64 bcm2711_defconfig
 ```
 
 然后正式开始编译：
 
 ```shell
+# CROSS_COMPILE参数是你的交叉编译工具链
+# 如果你使用的是从网上下载的gcc编译器, 记得要么填完整的绝对路径, 要么把它加到PATH环境变量里
+export PATH=/home/pzqqt/build_toolchain/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:${PATH}
+
 # 使用gcc编译
 # -j参数表示用几个线程进行编译, 为了效率最大化, 这个数最好等于你的编译机CPU核心数, 或者稍大于这个数
 make -j6 ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu-
-
-# 使用clang编译
-make -j6 ARCH=arm64 LLVM=1 CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
 
 然后静静等待编译完成，在CPU i5-10500H、内存16G的笔记本电脑上，这个过程需要6~8分钟。
@@ -120,7 +105,6 @@ OUT_MODULES=$(python3 -c "import tempfile; print(tempfile.mkdtemp(prefix='kr4b_'
 mkdir -p $OUT_MODULES
 
 # 开始"安装"模块
-# 用clang编译的话加上`LLVM=1`参数
 sudo env PATH="$PATH" make -j6 \
     ARCH=arm64 \
     CROSS_COMPILE=aarch64-none-linux-gnu- \
@@ -204,4 +188,16 @@ sudo tar -xzf ./modules.tar.gz -C /lib/modules/
 
 值得一提的是，有时候你在用软件包管理器更新系统软件包时，内核也会一并更新。如果你还想使用自己编译的内核的话，按照上面的步骤重新安装内核、dtb、dtbo就可以了。
 
-> 如果你曾经安装过多次自己编译的不同版本的内核，那么你可以把`/lib/modules/`目录下旧版本的内核模块目录给删了，别把官方内核的内核模块给删了就行。
+如果你曾经安装过多次自己编译的不同版本的内核，那么你可以把`/lib/modules/`目录下旧版本的内核模块目录给删了，别把官方内核的内核模块给删了就行。
+
+# Tips
+
+## 1. 使用clang编译内核
+
+提前准备好clang工具链，添加其路径到`PATH`环境变量，然后在正式开始编译内核时，在make后面追加参数`LLVM=1 LLVM_IAS=1`就可以了。
+
+## 2. 编译时启用3级优化
+
+> 如果你使用clang编译内核，那么可以试试启用3级优化，如果是使用GCC编译内核则不建议。
+
+在正式开始编译内核时，在make后面追加参数`KCFLAGS=-O3`。
