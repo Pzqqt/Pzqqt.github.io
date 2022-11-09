@@ -56,17 +56,16 @@ git clone https://github.com/Pzqqt/kernel_raspberrypi_4b.git -b rpi-5.15.y
 在终端执行：
 
 ```shell
-make ARCH=arm64 bcm2711_defconfig
+# CROSS_COMPILE参数是你的交叉编译工具链
+# 如果你使用的是从网上下载的gcc编译器, 记得要么填完整的绝对路径, 要么把它加到PATH环境变量里
+export PATH=/home/pzqqt/build_toolchain/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:${PATH}
+
+make ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu- bcm2711_defconfig
 ```
 
 然后正式开始编译：
 
 ```shell
-# CROSS_COMPILE参数是你的交叉编译工具链
-# 如果你使用的是从网上下载的gcc编译器, 记得要么填完整的绝对路径, 要么把它加到PATH环境变量里
-export PATH=/home/pzqqt/build_toolchain/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/bin:${PATH}
-
-# 使用gcc编译
 # -j参数表示用几个线程进行编译, 为了效率最大化, 这个数最好等于你的编译机CPU核心数, 或者稍大于这个数
 make -j6 ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu-
 ```
@@ -194,10 +193,10 @@ sudo tar -xzf ./modules.tar.gz -C /lib/modules/
 
 ## 1. 使用clang编译内核
 
-提前准备好clang工具链，添加其路径到`PATH`环境变量，然后在正式开始编译内核时，在make后面追加参数`LLVM=1 LLVM_IAS=1`就可以了。
+提前准备好clang工具链，添加其路径到`PATH`环境变量，然后，在之前执行的每一个make命令后面追加参数`LLVM=1 LLVM_IAS=1`就可以了。
 
 ## 2. 编译时启用3级优化
 
 > 如果你使用clang编译内核，那么可以试试启用3级优化，如果是使用GCC编译内核则不建议。
 
-在正式开始编译内核时，在make后面追加参数`KCFLAGS=-O3`。
+在之前执行的每一个make命令后面追加参数`KCFLAGS=-O3`。
