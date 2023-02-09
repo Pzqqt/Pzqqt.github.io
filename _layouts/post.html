@@ -17,7 +17,9 @@ layout: default
               {% if page.toc == true %}
                 {% include toc.html html=content %}
                 <hr>
-              {% endif %}
+                {% include anchor_headings.html html=content anchorBody="#" %}
+              {% else %}
                 {{ content }}
+              {% endif %}
             </div>
         </section>
