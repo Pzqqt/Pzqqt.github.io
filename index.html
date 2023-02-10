@@ -10,13 +10,13 @@ layout: default
                     <h2 class="post-title">
                         <a href="{{ post.url }}">{{ post.slug }}</a>
                     </h2>
-                    <p class="post-meta">
+                </header>
+                <p class="post-meta">
                     {{ post.date | date: "%Y-%m-%d" }}
                   {% for tag_name in post.tags %}
                     {% include tag.html name=tag_name %}
                   {% endfor %}
-                    </p>
-                </header>
+                </p>
                 <div class="post-description">
                     <p>{{ post.excerpt | strip_html }} ...</p>
                 </div>
