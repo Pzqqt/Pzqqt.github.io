@@ -13,18 +13,20 @@
     <link rel="stylesheet" type="text/css" href="/static/blog.css">
     <link rel="stylesheet" type="text/css" href="/static/colorful.css">
     <link rel="stylesheet" type="text/css" href="/static/custom.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-      window.onscroll = function() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-          document.getElementById("totop").style.display = "block";
-        } else {
-          document.getElementById("totop").style.display = "none";
-        }
-      }
-      function topFunction() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-      }
+$(document).ready(function() {
+    let totop_element = $('#totop');
+
+    $(window).scroll(function() {
+        $(window).scrollTop() > 200 ? totop_element.fadeIn() : totop_element.fadeOut();
+    });
+
+    totop_element.click(function(e) {
+        $('html, body').animate( { scrollTop: 0 }, 300 );
+        return false;
+    });
+});
     </script>
 </head>
 
@@ -76,7 +78,7 @@
 
 <script src="/static/mottos.js"></script>
 
-<button id="totop" onclick="topFunction()" class="pure-button pure-button-primary totop-button" style="display: none; border-radius: 50%; width: 50px; height: 50px;" title="To top">^</button>
+<button id="totop" class="pure-button pure-button-primary totop-button" style="display: none; border-radius: 50%; width: 50px; height: 50px;" title="To top">^</button>
 
 </body>
 
