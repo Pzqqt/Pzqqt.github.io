@@ -26,7 +26,6 @@ excerpt_separator: <!--more-->
     font-size: 100%;
   }
 </style>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function() {
     $(".rom-title").click(function() {
