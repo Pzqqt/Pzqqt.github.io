@@ -75,7 +75,10 @@ blockquote {
     font-size: 80%;
     color: #ccc;
 }
-a.heading-anchor { color: #DDDDDD; }
+a.heading-anchor {
+    color: #DDDDDD;
+    text-decoration:none;
+}
 a.heading-anchor:hover { color: #777777; }
 @media (max-width: 48em) {
     #motto {
