@@ -13,8 +13,36 @@
     <link rel="stylesheet" type="text/css" href="/static/blog.css">
     <link rel="stylesheet" type="text/css" href="/static/colorful.css">
     <link rel="stylesheet" type="text/css" href="/static/custom.css">
+    <script src="/static/js.cookie-3.0.0.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+function enable_night_mode() {
+    $('html, body').addClass("body-night");
+    $('.entries').addClass("entries-night");
+    $('.post-title').addClass("font-color-night");
+    $('.post-description').addClass("font-color-night");
+    $('code.language-plaintext').addClass("code-night");
+    $('blockquote').addClass("blockquote-night");
+    $('div.pure-menu-link').addClass("pure-menu-link-night");
+}
+function disable_night_mode() {
+    $('html, body').removeClass("body-night");
+    $('.entries').removeClass("entries-night");
+    $('.post-title').removeClass("font-color-night");
+    $('.post-description').removeClass("font-color-night");
+    $('code.language-plaintext').removeClass("code-night");
+    $('blockquote').removeClass("blockquote-night");
+    $('div.pure-menu-link').removeClass("pure-menu-link-night");
+}
+function apply_night_mode() {
+    if (Cookies.get("ui_night_mode") === "true") {
+        $('#night_toggle').html("Light");
+        enable_night_mode();
+    } else {
+        $('#night_toggle').html("Night");
+        disable_night_mode();
+    }
+}
 $(document).ready(function() {
     let totop_element = $('#totop');
 
@@ -25,6 +53,11 @@ $(document).ready(function() {
     totop_element.click(function(e) {
         $('html, body').animate( { scrollTop: 0 }, 300 );
         return false;
+    });
+
+    $('#night_toggle').click(function() {
+        Cookies.set("ui_night_mode", Cookies.get("ui_night_mode") !== "true");
+        apply_night_mode();
     });
 });
     </script>
@@ -53,6 +86,9 @@ $(document).ready(function() {
                     </li>
                     <li class="nav-item">
                         <a class="pure-button" href="/tags">Tags</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="pure-button" id="night_toggle" href="javascript:;">Night</a>
                     </li>
                     <li class="nav-item">
                         <a class="pure-button" href="https://github.com/Pzqqt" target="_blank">Github</a>
@@ -84,5 +120,7 @@ $(document).ready(function() {
 <button id="totop" class="pure-button pure-button-primary totop-button" style="display: none; border-radius: 50%; width: 50px; height: 50px;" title="To top">^</button>
 
 </body>
+
+<script>apply_night_mode();</script>
 
 </html>

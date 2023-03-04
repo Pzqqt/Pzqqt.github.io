@@ -80,6 +80,28 @@ a.heading-anchor {
     text-decoration:none;
 }
 a.heading-anchor:hover { color: #777777; }
+/* Night mode */
+.font-color-night {
+    color: #dddddd;
+}
+body.body-night {
+    background-color: #333333;
+    color: #dddddd;
+}
+.entries-night {
+    background: #444444;
+}
+.pure-menu-link-night:hover {
+    background-color: #444444;
+}
+code.code-night {
+    color: #77c1fb;
+    background-color: #444444;
+}
+blockquote.blockquote-night {
+    color: #999999;
+    border-left: 4px solid #666666;
+}
 @media (max-width: 48em) {
     #motto {
         /* 窄屏时motto靠左对齐 */
