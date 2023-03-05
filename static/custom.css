@@ -37,7 +37,7 @@ blockquote {
     border-left: 10px solid #ccc;
     padding: 20px 20px 1px;
     background: #f9f9f9;
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px;
     margin-bottom: 20px;
 }
 /* entry正文标题 */
