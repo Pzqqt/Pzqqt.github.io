@@ -4,7 +4,6 @@ tags: Android
 excerpt_separator: <!--more-->
 ---
 
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
 <style>
   p.rom-item, .rom-info p {
     margin-block-start: 0.5em;
