@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="/static/favicon.ico" /> 
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css">
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/purecss@2.1.0/build/grids-responsive-min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css">
     <link rel="stylesheet" type="text/css" href="/static/blog.css">
     <link rel="stylesheet" type="text/css" href="/static/colorful.css">
     <link rel="stylesheet" type="text/css" href="/static/custom.css">
@@ -36,10 +37,10 @@ function disable_night_mode() {
 }
 function apply_night_mode() {
     if (Cookies.get("ui_night_mode") === "true") {
-        $('#night_toggle').html("Light");
+        $('#night_toggle').html('<i class="ri-sun-fill"></i>').attr("title", "Light mode");
         enable_night_mode();
     } else {
-        $('#night_toggle').html("Night");
+        $('#night_toggle').html('<i class="ri-moon-line"></i>').attr("title", "Night mode");;
         disable_night_mode();
     }
 }
@@ -88,9 +89,6 @@ $(document).ready(function() {
                         <a class="pure-button" href="/tags">Tags</a>
                     </li>
                     <li class="nav-item">
-                        <a class="pure-button" id="night_toggle" href="javascript:;">Night</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="pure-button" href="https://github.com/Pzqqt" target="_blank">Github</a>
                     </li>
                 </ul>
@@ -117,10 +115,12 @@ $(document).ready(function() {
 
 <script src="/static/mottos.js"></script>
 
-<button id="totop" class="pure-button pure-button-primary totop-button" style="display: none; border-radius: 50%; width: 50px; height: 50px;" title="To top">^</button>
+<button id="night_toggle" class="pure-button pure-button-primary" title="Night mode"><i class="ri-moon-line"></i></button>
+
+<button id="totop" class="pure-button pure-button-primary" title="To top"><i class="ri-arrow-up-line"></i></button>
 
 </body>
 
-<script>apply_night_mode();</script>
+<script>Cookies.get("ui_night_mode") === "true" && apply_night_mode();</script>
 
 </html>
