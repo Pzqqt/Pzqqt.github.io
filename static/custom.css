@@ -19,11 +19,12 @@ pre.highlight {
     border-radius: 4px;
     max-height: 30em;
     overflow: auto;
-    background: #f0f3f3
+    background: #f0f3f3;
 }
 pre code {
     padding: 0px 0px;
     margin: 0;
+    background-color: transparent;
 }
 /* 引用 */
 blockquote {
