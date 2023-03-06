@@ -63,8 +63,7 @@ blockquote {
 #totop {
     position: fixed;
     bottom: 120px;
-    right: 40px;
-    display: none;
+    right: -50px;
     padding-top: 10px;
     border-radius: 50%;
     width: 50px;
@@ -74,7 +73,6 @@ blockquote {
     position: fixed;
     bottom: 60px;
     right: 40px;
-    /* display: none; */
     padding-top: 10px;
     border-radius: 50%;
     width: 50px;

@@ -40,16 +40,27 @@ function apply_night_mode() {
         toggle_night_css();
     }
 }
+
 $(document).ready(function() {
     let totop_element = $('#totop');
+    let _fs = true;
 
     $(window).scroll(function() {
-        $(window).scrollTop() > 200 ? totop_element.fadeIn() : totop_element.fadeOut();
+        if ($(window).scrollTop() > 200) {
+            if (_fs) {
+                totop_element.stop().animate({"right": "40px"}, 300);
+                _fs = false;
+            }
+        } else {
+            if (!_fs) {
+                totop_element.stop().animate({"right": "-50px"}, 300);
+                _fs = true;
+            }
+        }
     });
 
-    totop_element.click(function(e) {
-        $('html, body').animate( { scrollTop: 0 }, 300 );
-        return false;
+    totop_element.click(function() {
+        $('html, body').animate({"scrollTop": 0}, 300);
     });
 
     $('#night_toggle').click(function() {
