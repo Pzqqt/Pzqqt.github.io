@@ -15,8 +15,6 @@ excerpt_separator: <!--more-->
     border: 1px solid #bbb;
     padding: 0.5em;
     border-radius: 4px;
-    color: #444444;
-    background: #f0f3f3;
     overflow: overlay auto;
   }
   code {
