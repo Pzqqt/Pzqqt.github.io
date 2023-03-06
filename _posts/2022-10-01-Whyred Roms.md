@@ -23,6 +23,11 @@ excerpt_separator: <!--more-->
   pre.highlight {
     font-size: 100%;
   }
+  .ri-android-line {
+    vertical-align: bottom;
+    font-size: 1.2em;
+  }
+
 </style>
 <script>
   $(document).ready(function() {
@@ -45,7 +50,7 @@ excerpt_separator: <!--more-->
 <!--more-->
 
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">/e/ Rom Official</a>
 </p>
 <div class="rom-info">
@@ -55,7 +60,7 @@ excerpt_separator: <!--more-->
     <a href="https://images.ecloud.global/dev/whyred/e-1.4-r-20220923220394-dev-whyred.zip" target="_blank">e-1.4-r-20220923220394-dev-whyred.zip</a></p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">AICP Official</a>
 </p>
 <div class="rom-info">
@@ -68,7 +73,7 @@ excerpt_separator: <!--more-->
     <p><b>Size:</b> 840 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Ancient OS</a>
 </p>
 <div class="rom-info">
@@ -78,7 +83,7 @@ excerpt_separator: <!--more-->
     <p><b>Size:</b> 793.2 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Ancient OS (Include Gapps)</a>
 </p>
 <div class="rom-info">
@@ -88,7 +93,7 @@ excerpt_separator: <!--more-->
     <p><b>Size:</b> 1323.6 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">AospExtended 11 (Unofficial By SakilMondal)</a>
 </p>
 <div class="rom-info">
@@ -99,7 +104,7 @@ excerpt_separator: <!--more-->
     <p><b>Size:</b> 1234.69 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">AospExtended 12 (Unofficial By SakilMondal)</a>
 </p>
 <div class="rom-info">
@@ -110,7 +115,7 @@ excerpt_separator: <!--more-->
     <p><b>Size:</b> 786.51 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">AospExtended 12 (with Gapps) Official</a>
 </p>
 <div class="rom-info">
@@ -120,7 +125,7 @@ excerpt_separator: <!--more-->
     <p><b>Size:</b> 1247.84 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">AospExtended 12 Official</a>
 </p>
 <div class="rom-info">
@@ -130,7 +135,7 @@ excerpt_separator: <!--more-->
     <p><b>Size:</b> 782.63 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Arrow OS 11 Official</a>
 </p>
 <div class="rom-info">
@@ -151,7 +156,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 838.23 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Arrow OS 11 Official (Include Gapps)</a>
 </p>
 <div class="rom-info">
@@ -172,7 +177,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1161.31 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Arrow OS 12.1 Official</a>
 </p>
 <div class="rom-info">
@@ -188,7 +193,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 781.14 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Arrow OS 12.1 Official (Include Gapps)</a>
 </p>
 <div class="rom-info">
@@ -204,7 +209,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1104.62 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Bliss Rom 11 Official</a>
 </p>
 <div class="rom-info">
@@ -214,7 +219,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 804.2 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Carbon Rom (Unofficial By fakeyato)</a>
 </p>
 <div class="rom-info">
@@ -224,7 +229,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 718.9 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Carbon Rom Official</a>
 </p>
 <div class="rom-info">
@@ -235,7 +240,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 794.14 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Cherish OS Official</a>
 </p>
 <div class="rom-info">
@@ -246,7 +251,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 866.64 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Cherish OS Official (Include Gapps)</a>
 </p>
 <div class="rom-info">
@@ -257,7 +262,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1422.22 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Conquer OS Official</a>
 </p>
 <div class="rom-info">
@@ -267,7 +272,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 812.4 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Conquer OS Official (Include Gapps)</a>
 </p>
 <div class="rom-info">
@@ -277,7 +282,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1256.9 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Corvus OS Official</a>
 </p>
 <div class="rom-info">
@@ -286,7 +291,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 850.57MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Corvus OS Official (Include Gapps)</a>
 </p>
 <div class="rom-info">
@@ -295,7 +300,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1.32GB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">CrDroid Official</a>
 </p>
 <div class="rom-info">
@@ -305,7 +310,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 850.6 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">DerpFest Official</a>
 </p>
 <div class="rom-info">
@@ -315,7 +320,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1489.5 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Dot OS Official</a>
 </p>
 <div class="rom-info">
@@ -327,7 +332,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 739.52 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Dot OS Official (Include Gapps)</a>
 </p>
 <div class="rom-info">
@@ -339,7 +344,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1153.76 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">EvolutionX (Unofficial By @The_Santy)</a>
 </p>
 <div class="rom-info">
@@ -350,7 +355,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1435.56 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">EvolutionX Official</a>
 </p>
 <div class="rom-info">
@@ -362,7 +367,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1526.2 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Havoc OS 11 Official</a>
 </p>
 <div class="rom-info">
@@ -373,7 +378,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 774.9 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Havoc OS 11 Official (Include Gapps)</a>
 </p>
 <div class="rom-info">
@@ -384,7 +389,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1285.4 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Legion OS Official</a>
 </p>
 <div class="rom-info">
@@ -394,7 +399,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 893.9 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Lineage OS 18.0 (Unofficial By SakilMondal)</a>
 </p>
 <div class="rom-info">
@@ -405,7 +410,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1147.25 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Lineage OS Official</a>
 </p>
 <div class="rom-info">
@@ -420,7 +425,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 729.14 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">New rom release by AdrarHussain</a>
 </p>
 <div class="rom-info">
@@ -431,7 +436,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1166.47 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Nezuko OS Official</a>
 </p>
 <div class="rom-info">
@@ -441,7 +446,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 731.4 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Nezuko OS Official (Include Gapps)</a>
 </p>
 <div class="rom-info">
@@ -451,7 +456,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1142.1 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Nusantara Project Official</a>
 </p>
 <div class="rom-info">
@@ -462,7 +467,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 782.61 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Octavi OS Official</a>
 </p>
 <div class="rom-info">
@@ -472,7 +477,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 0.02 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Octavi OS Official (Include Gapps)</a>
 </p>
 <div class="rom-info">
@@ -482,7 +487,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 0.02 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">POSP Official</a>
 </p>
 <div class="rom-info">
@@ -491,7 +496,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <a href="https://github.com/PotatoDevices/device_xiaomi_whyred/releases/download/4.2.3/potato_whyred-11-20210910-dumaloo.v4.2.3%2B20.Crispy.zip" target="_blank">potato_whyred-11-20210910-dumaloo.v4.2.3+20.Crispy.zip</a></p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Paranoid Android (Unofficial By orges)</a>
 </p>
 <div class="rom-info">
@@ -501,7 +506,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 935.9 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Pixel Extended Official</a>
 </p>
 <div class="rom-info">
@@ -511,7 +516,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1584.0 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">PixelPlusUI Official</a>
 </p>
 <div class="rom-info">
@@ -521,7 +526,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1392.02 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Pixys OS 12 Official (Include Gapps)</a>
 </p>
 <div class="rom-info">
@@ -532,7 +537,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1.41 GB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Project Elixir Official</a>
 </p>
 <div class="rom-info">
@@ -542,7 +547,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1401.21 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Project Radiant Official</a>
 </p>
 <div class="rom-info">
@@ -552,7 +557,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1372.9 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Project Sakura ROM Official</a>
 </p>
 <div class="rom-info">
@@ -562,7 +567,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 884.3 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Resurrection Remix OS Q (Unofficial By AdrarHussain)</a>
 </p>
 <div class="rom-info">
@@ -573,7 +578,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 928.37 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Resurrection Remix OS Q (Unofficial By AdrarHussain)(Include Gapps)</a>
 </p>
 <div class="rom-info">
@@ -584,7 +589,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1101.25 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Resurrection Remix OS Q Official</a>
 </p>
 <div class="rom-info">
@@ -594,7 +599,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 978.3 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Resurrection Remix OS Q Official (Include Gapps)</a>
 </p>
 <div class="rom-info">
@@ -604,7 +609,7 @@ https://arrowos.net/changelog.php</pre></div></p>
     <p><b>Size:</b> 1184.9 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Revenge OS Official</a>
 </p>
 <div class="rom-info">
@@ -622,7 +627,7 @@ Some update on kernel</pre></div></p>
     <p><b>Size:</b> 770.8 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Stag OS R Official</a>
 </p>
 <div class="rom-info">
@@ -633,7 +638,7 @@ Some update on kernel</pre></div></p>
     <p><b>Size:</b> 839.3 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Stag OS R Official (Include Gapps)</a>
 </p>
 <div class="rom-info">
@@ -644,7 +649,7 @@ Some update on kernel</pre></div></p>
     <p><b>Size:</b> 1085.9 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Styx OS Official</a>
 </p>
 <div class="rom-info">
@@ -654,7 +659,7 @@ Some update on kernel</pre></div></p>
     <p><b>Size:</b> 1262.3 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Superior OS Official</a>
 </p>
 <div class="rom-info">
@@ -664,7 +669,7 @@ Some update on kernel</pre></div></p>
     <p><b>Size:</b> 1146.1 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">TenX OS Official</a>
 </p>
 <div class="rom-info">
@@ -674,7 +679,7 @@ Some update on kernel</pre></div></p>
     <p><b>Size:</b> 1444.1 MB</p>
 </div>
 <p class="rom-item">
-    <i class="file-icon ri-android-line"></i>
+    <i class="ri-android-line"></i>
     <a href="javascript:;" class="rom-title">Xtended Official</a>
 </p>
 <div class="rom-info">
