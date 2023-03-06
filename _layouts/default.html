@@ -17,33 +17,23 @@
     <script src="/static/js.cookie-3.0.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script>
-function enable_night_mode() {
-    $('html, body').addClass("body-night");
-    $('.entries').addClass("entries-night");
-    $('.post-title').addClass("font-color-night");
-    $('.post-description').addClass("font-color-night");
-    $('code.language-plaintext').addClass("code-night");
-    $('blockquote').addClass("blockquote-night");
-    $('a.heading-anchor').addClass("heading-anchor-night");
-    $('div.pure-menu-link').addClass("pure-menu-link-night");
-}
-function disable_night_mode() {
-    $('html, body').removeClass("body-night");
-    $('.entries').removeClass("entries-night");
-    $('.post-title').removeClass("font-color-night");
-    $('.post-description').removeClass("font-color-night");
-    $('code.language-plaintext').removeClass("code-night");
-    $('blockquote').removeClass("blockquote-night");
-    $('a.heading-anchor').removeClass("heading-anchor-night");
-    $('div.pure-menu-link').removeClass("pure-menu-link-night");
+function toggle_night_css(enable) {
+    let custom_night_css_href = "/static/custom-night.css";
+    if (enable === "true") {
+        $('head > link[href="/static/custom.css"]').after(
+            $('<link rel="stylesheet" type="text/css" href="' + custom_night_css_href + '">')
+        );
+    } else {
+        $('head > link[href="' + custom_night_css_href + '"]').remove();
+    }
 }
 function apply_night_mode() {
     if (Cookies.get("ui_night_mode") === "true") {
         $('#night_toggle').html('<i class="ri-sun-fill"></i>').attr("title", "Light mode");
-        enable_night_mode();
+        toggle_night_css("true");
     } else {
-        $('#night_toggle').html('<i class="ri-moon-line"></i>').attr("title", "Night mode");;
-        disable_night_mode();
+        $('#night_toggle').html('<i class="ri-moon-line"></i>').attr("title", "Night mode");
+        toggle_night_css();
     }
 }
 $(document).ready(function() {
