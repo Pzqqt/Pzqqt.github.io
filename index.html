@@ -4,6 +4,7 @@ layout: default
 
         <h1 class="content-subhead">Recent posts</h1>
         <p>Total posts: {{ paginator.total_posts }}</p>
+        <div class="content-height-stretch">
           {% for post in paginator.posts %}
             <section class="entries">
                 <header>
@@ -22,6 +23,7 @@ layout: default
                 </div>
             </section>
           {% endfor %}
+        </div>
         <div class="paginator">
           {% if paginator.previous_page != nil %}
             <a href="{{ paginator.previous_page_path }}" class="pure-button pure-button-primary" style="width: 6em;">&lt;- Prev</a>

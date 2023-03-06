@@ -6,6 +6,7 @@ title: Archive
         <h1 class="content-subhead">Archive</h1>
         <p>Total posts: {{ site.posts.size }}</p>
 
+        <div class="content-height-stretch">
       {% for post in site.posts %}
         {% if post.next == nil %}
             <h2 class="post-title">{{ post.date | date: '%Y' }}</h2>
@@ -27,4 +28,4 @@ title: Archive
             </ul>
           {% endif %}
       {% endfor %}
-
+        </div>
