@@ -22,7 +22,7 @@ blockquote {
     border-left: 4px solid #666666;
 }
 a { color: rgb(64 153 210); }
-a.heading-anchor-night {
+a.heading-anchor {
     color: #555555;
     text-decoration: none;
 }
