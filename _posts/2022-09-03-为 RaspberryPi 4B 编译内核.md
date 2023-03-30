@@ -28,7 +28,7 @@ Linux version 5.15.61-v8+ (dom@buildbot) (aarch64-linux-gnu-gcc-8 (Ubuntu/Linaro
 首先，从 [raspberrypi/linux](https://github.com/raspberrypi/linux) 拉取源码。当前官方使用的是5.15版本的内核，所以我们只需拉取`rpi-5.15.y`分支即可。
 
 ```shell
-git clone https://github.com/Pzqqt/kernel_raspberrypi_4b.git -b rpi-5.15.y
+git clone https://github.com/raspberrypi/linux.git -b rpi-5.15.y
 ```
 
 > 如果你只是编译一次玩玩的话，可以在clone时加上`--depth=1`参数，这会加快拉取速度，并且减少存储空间占用。
