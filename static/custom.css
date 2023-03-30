@@ -20,6 +20,7 @@ pre.highlight {
     max-height: 30em;
     overflow: auto;
     background: #f0f3f3;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
 }
 pre code {
     padding: 0px 0px;
@@ -40,6 +41,7 @@ blockquote {
     background: #f9f9f9;
     border-radius: 5px;
     margin-bottom: 20px;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
 }
 /* entry正文标题 */
 .post-title {
@@ -94,6 +96,9 @@ a.heading-anchor {
     text-decoration:none;
 }
 a.heading-anchor:hover { color: #777777; }
+.pure-img-responsive {
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+}
 
 @media (min-width: 48em) {
     .content-height-stretch {
