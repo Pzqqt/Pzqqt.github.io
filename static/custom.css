@@ -94,8 +94,12 @@ a.heading-anchor {
     text-decoration:none;
 }
 a.heading-anchor:hover { color: #777777; }
-.content-height-stretch {
-    min-height: calc(100vh);
+
+@media (min-width: 48em) {
+    .content-height-stretch {
+        /* 宽屏时对该元素适用最小高度 */
+        min-height: calc(100vh);
+    }
 }
 @media (max-width: 48em) {
     #motto {
