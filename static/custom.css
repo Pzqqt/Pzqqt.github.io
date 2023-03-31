@@ -41,7 +41,6 @@ blockquote {
     background: #f9f9f9;
     border-radius: 5px;
     margin-bottom: 20px;
-    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
 }
 /* entry正文标题 */
 .post-title {
@@ -96,7 +95,7 @@ a.heading-anchor {
     text-decoration:none;
 }
 a.heading-anchor:hover { color: #777777; }
-.pure-img-responsive {
+.shadow {
     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
 }
 

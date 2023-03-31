@@ -6,7 +6,7 @@ layout: default
         <p>Total posts: {{ paginator.total_posts }}</p>
         <div class="content-height-stretch">
           {% for post in paginator.posts %}
-            <section class="entries">
+            <section class="entries shadow">
                 <header>
                     <h2 class="post-title">
                         <a href="{{ post.url }}">{{ post.slug }}</a>
