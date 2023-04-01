@@ -1,6 +1,8 @@
 /* Night mode */
-.content {
+body {
     background-color: #333333;
+}
+.content {
     color: #dddddd;
 }
 .content-subhead { color: #aaaaaa; }
