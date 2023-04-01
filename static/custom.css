@@ -11,6 +11,9 @@ code {
     margin: 4px;
 }
 /* 多行代码块 */
+div.highlight {
+    position: relative;
+}
 pre.highlight {
     padding: 0.5em;
     font-size: 95%;
@@ -26,6 +29,20 @@ pre code {
     padding: 0px 0px;
     margin: 0;
     background-color: transparent;
+}
+span.btn-pre-copy{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    position: absolute;
+    top: 0.4em;
+    right: 0.4em;
+    font-size: 125%;
+    line-height: 1;
+    cursor: pointer;
+    color: #888888;
 }
 /* 引用 */
 blockquote {
