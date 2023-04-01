@@ -26,3 +26,6 @@ a.heading-anchor {
     color: #555555;
     text-decoration: none;
 }
+::-webkit-scrollbar-track {
+    background: #555555;
+}
