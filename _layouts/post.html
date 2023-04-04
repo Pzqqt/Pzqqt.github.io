@@ -41,16 +41,26 @@ $(document).ready(function() {
     $("span.btn-pre-copy").click(function() {
         let btn = $(this);
         let pre = btn.next("pre");
+
+        function _btn_change() {
+            btn.html(icon_check);
+            setTimeout(() => {
+                btn.html(icon_copy);
+            }, 1500);
+        }
+
+        if ("clipboard" in navigator) {
+            navigator.clipboard.writeText(pre.text()).then(_btn_change);
+            return;
+        }
         let textarea_tmp = $('<textarea></textarea>');
+        textarea_tmp.css({width: "1px", height: "1px", position: "fixed", top: "5px"});
         textarea_tmp.text(pre.text());
-        textarea_tmp.appendTo(pre);
+        textarea_tmp.appendTo($("body"));
         textarea_tmp.select();
         document.execCommand("Copy");
         textarea_tmp.remove();
-        btn.html(icon_check);
-        setTimeout(() => {
-            btn.html(icon_copy);
-        }, 1500);
+        _btn_change();
     });
 });
         </script>
