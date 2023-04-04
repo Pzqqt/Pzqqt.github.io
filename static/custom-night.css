@@ -2,15 +2,16 @@
 body {
     background-color: #333333;
 }
-.content {
+.content,.post-title,.post-description {
     color: #dddddd;
 }
-.content-subhead { color: #aaaaaa; }
+.content-subhead {
+    color: #aaaaaa;
+    border-bottom: 1px solid #777777;
+}
 .entries {
     background: #444444;
-}
-.post-title,.post-description {
-    color: #dddddd;
+    border-left: 10px solid #777777;
 }
 .pure-menu-link:hover {
     background-color: #444444;
@@ -23,7 +24,9 @@ blockquote {
     color: #999999;
     border-left: 4px solid #666666;
 }
-a { color: rgb(64 153 210); }
+a {
+    color: rgb(69 164 225);
+}
 a.heading-anchor {
     color: #555555;
     text-decoration: none;
