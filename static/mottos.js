@@ -7,6 +7,7 @@ let mottos = [
     '不要虚掷你的黄金时代，不要去倾听枯燥乏味的东西，不要设法挽留无望的失败，不要把你的生命献给无知、平庸和低俗。 | 王尔德',
     '不要努力成为一个成功的人，要努力成为一个有价值的人。 | 爱因斯坦',
     '永远不要相信苦难是值得的，苦难就是苦难，它不会带来成功，也不值得追求，磨练意志是因为苦难无法避开。 | 余华',
+    '为众人抱薪者，不可使其冻毙于风雪。为大众谋福利者，不可使其孤军奋战。为自由开路者，不可使其困顿于荆棘。 | 慕容雪村',
 ];
 function get_random_motto() { return mottos[Math.floor(Math.random()*mottos.length)]; };
 document.getElementById("motto").innerHTML = get_random_motto();
