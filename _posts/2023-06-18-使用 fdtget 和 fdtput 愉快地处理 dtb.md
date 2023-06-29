@@ -17,7 +17,7 @@ toc: true
 
 <!--more-->
 
-# 1. 编译`fdtget`和`fdtput`
+# 1. 编译 fdtget 和 fdtput
 
 首先，先`git clone https://github.com/dgibson/dtc`
 
@@ -56,7 +56,7 @@ Error: missing filename
 
 编译fdtput的过程和fdtget是类似的，具体不再赘述。
 
-# 2. 静态编译`fdtget`和`fdtput`
+# 2. 静态编译 fdtget 和 fdtput
 
 出于某些目的，你可能需要静态编译它们。
 
@@ -78,7 +78,7 @@ gcc \
 
 看看我们编译得到的可执行文件的大小，938Kb，strip之后是857Kb。
 
-# 3. 使用Android NDK静态编译`fdtget`和`fdtput`
+# 3. 使用 Android NDK 静态编译 fdtget 和 fdtput
 
 如果你要在Android平台使用`fdtget`和`fdtput`的话，比起使用arm/aarch64编译器，我更推荐你使用Android NDK进行编译。
 
@@ -165,7 +165,7 @@ $ ndk-build NDK_DEBUG=0 APP_ABI=armeabi-v7a
 
 只有68Kb！要知道这可是静态编译啊！
 
-# 4. 使用`fdtget`
+# 4. 使用 fdtget
 
 `fdtget`的使用方法在帮助信息里已经写很明确了。你可以一边阅读dts一边试用。
 
@@ -214,7 +214,7 @@ $ ndk-build NDK_DEBUG=0 APP_ABI=armeabi-v7a
 
 可以看到`fdtget`也有自己的局限性：不支持更加高级的查询（搜索、遍历）。
 
-# 5. 使用`fdtput`
+# 5. 使用 fdtput
 
 `fdtput`就很牛逼了，添加/删除节点，添加/删除/修改属性，样样皆可。
 
