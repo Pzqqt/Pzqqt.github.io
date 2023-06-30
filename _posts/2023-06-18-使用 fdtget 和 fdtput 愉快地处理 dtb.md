@@ -203,8 +203,10 @@ $ ndk-build NDK_DEBUG=0 APP_ABI=armeabi-v7a
 举几个栗子：
 
 ```shell
-# 查询/节点下有哪些属性
+# 查询/节点下有哪些子节点
 ./fdtget <dtb文件> / -l
+# 查询/节点下有哪些属性
+./fdtget <dtb文件> / -p
 # 查询/cpus/cpu@0节点下compatible属性的值
 ./fdtget <dtb文件> /cpus/cpu@0 compatible
 # 搭配-t参数可以以指定类型返回属性值
