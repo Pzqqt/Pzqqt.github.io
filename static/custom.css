@@ -9,7 +9,6 @@ code {
     border-radius: 4px;
     font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
     margin: 4px;
-    white-space: nowrap;
 }
 /* 多行代码块 */
 div.highlight {
@@ -30,7 +29,6 @@ pre code {
     padding: 0px 0px;
     margin: 0;
     background-color: transparent;
-    white-space: pre;
 }
 span.btn-pre-copy{
     -webkit-user-select: none;
@@ -159,6 +157,13 @@ pre::-webkit-scrollbar {
     .content-height-stretch {
         /* 宽屏时对该元素适用最小高度 */
         min-height: calc(100vh);
+    }
+    /* 宽屏时阻止code折行 */
+    code {
+        white-space: nowrap;
+    }
+    pre code {
+        white-space: pre;
     }
 }
 @media (max-width: 48em) {
