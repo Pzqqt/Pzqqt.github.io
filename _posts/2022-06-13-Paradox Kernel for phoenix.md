@@ -78,7 +78,7 @@ Paradox Kernel is a kernel that suitable for Redmi K30 4G/Poco X2(phoenix/phoeni
 - Available TCP congestion algorithm: westwood, reno, cubic, htcp, bbr
 - Kernel-level cpusets parameter optimization, optimize CPU core calls
 - Enable CONFIG_HZ_300, faster system response
-- Latest zstd driver (v1.5.2) (when used as the compression algorithm of zram, decompression+read is 30% faster)
+- Latest zstd driver
 - Latest f2fs driver from Android Common Kernel
 - Latest TFA98XX driver from CAF (v6.7.14)
 - Latest touchscreen driver from MIUI 13 21.12.27
@@ -119,7 +119,7 @@ Paradox内核是一款适用于Redmi K30 4G/Poco X2（phoenix/phoenixin）的内
 - 可选TCP拥塞控制算法：westwood，reno，cubic，htcp，bbr
 - 内核级cpusets参数优化，优化CPU核心调用
 - 启用CONFIG_HZ_300，让系统响应更加迅速
-- 最新的zstd驱动（v1.5.2），作为zram的压缩算法时，解压和读取速度比之前快了30%
+- 最新的zstd驱动
 - 来自Android Common Kernel最新的f2fs驱动
 - 来自CAF最新的TFA98XX驱动（v6.7.14）
 - 来自MIUI 13 21.12.27最新的触屏驱动
