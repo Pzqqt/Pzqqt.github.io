@@ -34,7 +34,7 @@ excerpt_separator: <!--more-->
 
 准备好若干根母对母的杜邦线之后就可以开搞了。
 
-{% include pure-img-responsive.html url="http://www.pianshen.com/images/128/64908e7c403de70e1cb1d58bf1fff848.png" a_class="pure-u-md-3-4" %}
+{% include pure-img-responsive.html url="/images/e37_p0.png" a_class="pure-u-md-3-4" %}
 
 - 1脚：GND，电源地，直接接地。
 - 2脚：VCC，电源正极，为液晶屏提供主供电，接到提供5V电压的引脚上。
