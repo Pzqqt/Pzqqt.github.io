@@ -8,6 +8,7 @@ let mottos = [
     '不要努力成为一个成功的人，要努力成为一个有价值的人。 | 爱因斯坦',
     '永远不要相信苦难是值得的，苦难就是苦难，它不会带来成功，也不值得追求，磨练意志是因为苦难无法避开。 | 余华',
     '为众人抱薪者，不可使其冻毙于风雪。为大众谋福利者，不可使其孤军奋战。为自由开路者，不可使其困顿于荆棘。 | 慕容雪村',
+    '你只管做自己的事，把你的全部身心都投入到正在发生的事情中去，而不是把你的全部身心都投入到个人的敏感多虑中去。 | 迈克尔·辛格',
 ];
 function get_random_motto() { return mottos[Math.floor(Math.random()*mottos.length)]; };
 document.getElementById("motto").innerHTML = get_random_motto();
