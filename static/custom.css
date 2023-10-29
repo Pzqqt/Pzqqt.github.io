@@ -100,6 +100,9 @@ blockquote {
 .task-list-item-checkbox {
     margin-right: 0.5em;
 }
+.footer,.content-subhead {
+    font-weight: 300;
+}
 .footer-text {
     white-space: normal;
     font-size: 80%;
