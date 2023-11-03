@@ -51,9 +51,9 @@ blockquote {
 }
 /* entry块 */
 .entries {
-    border-left: 10px solid #ccc;
+    border-left: 10px solid #ccccccbb;
     padding: 20px 20px 1px;
-    background: #f9f9f9;
+    background: #f9f9f9bb;
     border-radius: 5px;
     margin-bottom: 20px;
 }

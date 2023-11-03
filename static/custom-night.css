@@ -10,8 +10,8 @@ body {
     border-bottom: 1px solid #777777;
 }
 .entries {
-    background: #444444;
-    border-left: 10px solid #777777;
+    background: #444444bb;
+    border-left: 10px solid #777777bb;
 }
 .pure-menu-link:hover {
     background-color: #444444;
