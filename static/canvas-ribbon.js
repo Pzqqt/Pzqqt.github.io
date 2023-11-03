@@ -2,9 +2,7 @@
  * Created by zproo on 2017/4/8.
  */
 !function () {
-    document.addEventListener('touchmove', function (e) {
-        e.preventDefault()
-    });
+    if (window.innerWidth < 768) return;
 
     function getAttr(script, attr, default_val) {
         return Number(script.getAttribute(attr)) || default_val;
@@ -72,6 +70,5 @@
     }
 
     document.onclick = init;
-    document.ontouchstart = init;
     init();
 }();
