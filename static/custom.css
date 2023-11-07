@@ -108,6 +108,9 @@ blockquote {
     font-size: 80%;
     color: #ccc;
 }
+.brand-tagline {
+    font-weight: 250;
+}
 a.heading-anchor {
     color: #DDDDDD;
     text-decoration:none;
