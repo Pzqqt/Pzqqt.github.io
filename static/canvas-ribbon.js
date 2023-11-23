@@ -69,6 +69,6 @@
         return (temp > height || temp < 0) ? geneY(y) : temp;
     }
 
-    document.onclick = init;
+    document.getElementsByClassName('content')[0].onclick = init;
     init();
 }();
