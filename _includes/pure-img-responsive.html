@@ -1,5 +1,12 @@
 <div class="pure-g" style="{{ include.div_style }}">
-  <a class="pure-u-1 {{ include.a_class }}" href="{{ include.url }}">
-    <img class="pure-img-responsive shadow" src="{{ include.url }}" alt="{{ include.alt | default:include.url }}">
-  </a>
+  <div class="pure-u-1 {{ include.a_class }}">
+    <a href="{{ include.url }}">
+      <img class="pure-img-responsive shadow" src="{{ include.url }}" alt="{{ include.alt | default:include.url }}">
+    </a>
+{% if include.alt %}
+    <div class="post-image-meta">
+      <p>{{ include.alt }}</p>
+    </div>
+{% endif %}
+  </div>
 </div>
