@@ -39,7 +39,7 @@ excerpt_separator: <!--more-->
 
 谈回骁龙7+gen2本身，很多数码博主将其称为降频版骁龙8+gen1，网友们更是将其戏称为“骁龙8-”，实际上这种说法也基本没错。
 
-{% include pure-img-responsive.html url="/images/e43_p1.png" a_class="pure-u-md-2-3" %}
+{% include pure-img-responsive.html url="/images/e43_p1.png" a_class="pure-u-md-2-3" alt="资料来源：极客湾" %}
 
 相比于满血版的骁龙8+gen1，骁龙7+gen2把CPU各个核心的峰值频率稍微降低了一些（200~300MHz），GPU峰值频率从900MHz阉割至580MHz，系统缓存从4MB阉割到了2MB，基带从X65阉割至X62，其他方面完全一致。
 
