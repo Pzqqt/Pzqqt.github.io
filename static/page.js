@@ -25,6 +25,9 @@ function apply_night_mode() {
 $(document).ready(function() {
     let totop_btn = $('#totop');
     let _fs = true;
+    const zooming = new Zooming({
+        bgColor: Cookies.get("ui_night_mode") === "true" ? '#000' : '#fff'
+    });
 
     $(window).scroll(function() {
         if ($(window).scrollTop() > 200) {
@@ -47,5 +50,8 @@ $(document).ready(function() {
     $('#night_toggle').click(function() {
         Cookies.set("ui_night_mode", Cookies.get("ui_night_mode") !== "true");
         apply_night_mode();
+        zooming.config({bgColor: Cookies.get("ui_night_mode") === "true" ? '#000' : '#fff'});
     });
+
+    zooming.listen('.pure-img-responsive');
 });
