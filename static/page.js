@@ -26,7 +26,12 @@ $(document).ready(function() {
     let totop_btn = $('#totop');
     let _fs = true;
     const zooming = new Zooming({
-        bgColor: Cookies.get("ui_night_mode") === "true" ? '#000' : '#fff'
+        bgColor: Cookies.get("ui_night_mode") === "true" ? '#000' : '#fff',
+        scaleExtra: window.innerWidth < 768 ? 2 : 1,
+    });
+
+    $(window).resize(function(){
+        zooming.config({scaleExtra: window.innerWidth < 768 ? 2 : 1});
     });
 
     $(window).scroll(function() {
