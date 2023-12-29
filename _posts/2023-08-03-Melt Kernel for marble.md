@@ -22,12 +22,16 @@ Melt Kernel is a kernel that suitable for Redmi Note 12 Turbo/Poco F5(marble/mar
 - Available zram compression algorithms: lzo-rle, lz4, zstd
 - Available I/O scheduler: bfq, ssg, mq-deadline, kyber
 - Available TCP congestion algorithm: westwood, reno, cubic, htcp, bbr
-- Add sound control (supported since v2.1)
+- Add sound control
 - Boeffla wakelock blocker driver v1.1.0
 - Enable DAMON-based reclaim by default
 - Kernel-level cpusets parameter optimization, optimize CPU core calls
 - Enable CONFIG_HZ_300, faster system response
 - Backport "per memcg lru lock" from v5.15
+- Backport zsmalloc from v6.5
+- Backport zram from v6.4
+- Backport NTFS3 from v5.15 (starting from Melt v2.4.4)
+- Enable TTL/HMARK target support
 - Latest zstd driver
 - Latest aw882xx driver
 - Latest WiFi driver from CAF
@@ -62,12 +66,16 @@ Melt内核是一款适用于Redmi Note 12 Turbo/Poco F5（marble/marblein）的�
 - 支持的zram压缩算法：lzo-rle，lz4，zstd
 - 可选I/O调度器：bfq，ssg，mq-deadline，kyber
 - 可选TCP拥塞控制算法：westwood，reno，cubic，htcp，bbr
-- 添加音量控制支持（从v2.1开始支持）
+- 添加音量控制支持
 - Boeffla唤醒锁阻止驱动v1.1.0
 - 默认启用基于DAMON的内存回收功能
 - 内核级cpusets参数优化，优化CPU核心调用
 - 启用CONFIG_HZ_300，让系统响应更加迅速
 - 从v5.15向后移植“per memcg lru lock”
+- 从v6.5向后移植zsmalloc
+- 从v6.4向后移植zram
+- 从v5.15向后移植NTFS3（从Melt v2.4.4开始）
+- 启用TTL/HMARK target支持
 - 最新的zstd驱动
 - 最新的aw882xx驱动
 - 来自CAF最新的WiFi驱动
