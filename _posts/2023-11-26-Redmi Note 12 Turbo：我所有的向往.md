@@ -25,7 +25,7 @@ excerpt_separator: <!--more-->
 
 背面的设计同样惊艳，当其他厂商其他机型都在研究怎么设计相机模组的DECO时，Redmi Note 12 Turbo把相机模组直接镶嵌在背面，这样简洁的设计实在是太戳我的XP了。
 
-{% include pure-img-responsive.html url="https://camo.githubusercontent.com/2d938854206e2b18a15096907a18f71e1c29f38fb97b9718fedeeedb16824c4c/68747470733a2f2f63646e2e636e626a302e6664732e6170692e6d692d696d672e636f6d2f6232632d73686f706170692d706d732f706d735f313637393938323536352e31323234313736322e706e67" a_class="pure-u-md-2-3" %}
+{% include pure-img-responsive.html url="https://cdn.cnbj0.fds.api.mi-img.com/b2c-shopapi-pms/pms_1679982565.12241762.png" a_class="pure-u-md-2-3" %}
 
 另外，冰羽白的配色简直美到哭！~~（所以我为什么要买蓝色...）~~
 
