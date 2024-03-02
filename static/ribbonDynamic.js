@@ -106,7 +106,6 @@
         };
         this._onDraw = this._onDraw.bind(this);
         this._onResize = this._onResize.bind(this);
-        this._onScroll = this._onScroll.bind(this);
         this.setOptions(options);
         this.init();
     };
@@ -142,7 +141,6 @@
                 this._context.globalAlpha = this._options.colorAlpha;
                 // 这里可以设置是否随着窗口的滚动而滚动
                 window.addEventListener("resize", this._onResize);
-                window.addEventListener("scroll", this._onScroll);
                 // 这里设置添加的位置
                 var body_ = document.getElementsByTagName('body')[0];
                 body_.appendChild(this._canvas);
@@ -276,9 +274,6 @@
                     this._context.globalAlpha = this._options.colorAlpha;
                 }
             }
-        }, _onScroll: function (e) {
-            var screen = screenInfo(e);
-            this._scroll = screen.scrolly;
         }
     };
     return Factory;
