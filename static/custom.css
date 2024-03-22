@@ -122,6 +122,16 @@ a.heading-anchor:hover { color: #777777; }
 .shadow {
     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
 }
+#menu_button {
+    position: absolute;
+    right: .25em;
+    top: .25rem;
+    font-size: 2em;
+}
+#menu_button:hover {
+    cursor: pointer;
+}
+
 /* Scroll Bar */
 ::-webkit-scrollbar {
     width: 16px;
@@ -174,5 +184,9 @@ pre::-webkit-scrollbar {
     #motto {
         /* 窄屏时motto靠左对齐 */
         text-align: left;
+    }
+    #menu_button {
+    	/* 窄屏时不要显示menu按钮 */
+        display: none;
     }
 }

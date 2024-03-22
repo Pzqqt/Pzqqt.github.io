@@ -25,6 +25,7 @@ function apply_night_mode() {
 $(document).ready(function() {
     let totop_btn = $('#totop');
     let _fs = true;
+    let _menu_flag = false;
     const zooming = new Zooming({
         bgColor: Cookies.get("ui_night_mode") === "true" ? '#000' : '#fff',
         scaleExtra: window.innerWidth < 768 ? 2 : 1,
@@ -32,6 +33,14 @@ $(document).ready(function() {
 
     $(window).resize(function(){
         zooming.config({scaleExtra: window.innerWidth < 768 ? 2 : 1});
+        $('.content').attr("style", "");
+        $('.sidebar').attr("style", "");
+        if (window.innerWidth >= 768) {
+            $('#menu_button').css("right", ".25em");
+            if (Cookies.get("ui_night_mode") !== "true")
+                $('#menu_button').css("color", "#fff");
+            _menu_flag = false;
+        };
     });
 
     $(window).scroll(function() {
@@ -56,6 +65,28 @@ $(document).ready(function() {
         Cookies.set("ui_night_mode", Cookies.get("ui_night_mode") !== "true");
         apply_night_mode();
         zooming.config({bgColor: Cookies.get("ui_night_mode") === "true" ? '#000' : '#fff'});
+        if (_menu_flag)
+            $('#menu_button').css("color", Cookies.get("ui_night_mode") === "true" ? "#fff" : "#222");
+    });
+
+    $('#menu_button').click(function() {
+        if (window.innerWidth < 768) return;
+        if (_menu_flag) {
+            $('.content').stop().animate({"margin-left": "25%"}, "slow");
+            $('.sidebar').stop().animate({"margin-left": 0}, "slow");
+            $('#menu_button').stop().animate({"right": ".25em"}, "slow");
+            if (Cookies.get("ui_night_mode") !== "true")
+                $('#menu_button').css("color", "");
+            _menu_flag = false;
+        } else {
+            $('.content').stop().animate({"margin-left": "12.5%"}, "slow");
+            $('.sidebar').stop().animate({"margin-left": "-25%"}, "slow", function() {
+                if (Cookies.get("ui_night_mode") !== "true")
+                    $('#menu_button').css("color", "#222");
+                $('#menu_button').stop().animate({"right": "-1.25em"}, "slow");
+            });
+            _menu_flag = true;
+        };
     });
 
     zooming.listen('.pure-img-responsive');
