@@ -135,8 +135,10 @@ h3 {
     margin: 1em 0;
 }
 .post-image-meta {
-    margin-top: -3.5em;
-    margin-left: 1em;
+    position: absolute;
+    bottom: .5em;
+    left: 1em;
+    font-size: 110%;
     color: #fff;
     text-shadow: 0 5px 10px #333;
 }
