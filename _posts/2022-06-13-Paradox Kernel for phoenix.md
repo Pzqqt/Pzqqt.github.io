@@ -4,55 +4,7 @@ tags: Android
 excerpt_separator: <!--more-->
 ---
 
-<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-<script src="/static/Paradox_logo.js"></script>
-<script>
-var canvas, stage, exportRoot, anim_container, fnStartAnimation;
-function init() {
-	canvas = document.getElementById("canvas");
-	anim_container = document.getElementById("animation_container");
-	dom_overlay_container = document.getElementById("dom_overlay_container");
-	var comp=AdobeAn.getComposition("E518D83BFAA64A4BB72098E780D3A4EB");
-	var lib=comp.getLibrary();
-	var loader = new createjs.LoadQueue(false);
-	loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
-	loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
-	var lib=comp.getLibrary();
-	loader.loadManifest(lib.properties.manifest);
-}
-function handleFileLoad(evt, comp) {
-	var images=comp.getImages();	
-	if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
-}
-function handleComplete(evt,comp) {
-	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
-	var lib=comp.getLibrary();
-	var ss=comp.getSpriteSheet();
-	var queue = evt.target;
-	var ssMetadata = lib.ssMetadata;
-	for(i=0; i<ssMetadata.length; i++) {
-		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
-	}
-	exportRoot = new lib.Paradox_logo();
-	stage = new lib.Stage(canvas);	
-	//Registers the "tick" event listener.
-	fnStartAnimation = function() {
-		stage.addChild(exportRoot);
-		createjs.Ticker.framerate = lib.properties.fps;
-		createjs.Ticker.addEventListener("tick", stage);
-	}	    
-	//Code to support hidpi screens and responsive scaling.
-	AdobeAn.makeResponsive(true,'width',true,1,[canvas,anim_container,dom_overlay_container]);	
-	AdobeAn.compositionLoaded(lib.properties.id);
-	fnStartAnimation();
-}
-</script>
-
-<div id="animation_container" style="margin-top: 1em;">
-	<canvas id="canvas" width="432" height="243" style="display: block; background-color:rgba(0, 0, 0, 1.00);"></canvas>
-	<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:432px; height:243px; position: absolute; left: 0px; top: 0px; display: block;"></div>
-</div>
-
+{% include pure-img-responsive.html url="/images/Paradox_logo.gif" a_class="pure-u-md-2-3" %}
 
 Paradox Kernel is a kernel that suitable for Redmi K30 4G/Poco X2(phoenix/phoenixin) devices.
 
