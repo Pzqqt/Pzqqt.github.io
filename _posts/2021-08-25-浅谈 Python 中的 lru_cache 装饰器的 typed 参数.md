@@ -29,11 +29,6 @@ def my_lru_cache():
         # 使用wraps装饰器, 以保留被装饰函数(func)的元数据(比如函数的名字)
         @wraps(func)
         def _func(*args, **kwargs):
-            # 用nonlocal关键字将_saved标记为自由变量
-            # 原因:
-            # 在_func中访问外部的_saved变量是可行的, 但是由于_saved不在_func的作用域中
-            # 所以我们不能修改它, 若要修改_saved变量, 则必须将其标记为自由变量
-            nonlocal _saved
             # 别忘了字典_saved的键必须是可哈希的
             # 所以需要把位置参数args(列表)和关键字参数kwargs(字典)转为可哈希的格式
             args_ = tuple(args)
@@ -91,7 +86,6 @@ def my_lru_cache():
     def wrapper(func):
         @wraps(func)
         def _func(*args, **kwargs):
-            nonlocal _saved
             args_ = tuple(args)
             kwargs_ = frozenset(kwargs.items())
             # <<<<<<< 旧代码
@@ -270,7 +264,6 @@ def my_lru_cache(typed=False):
     def wrapper(func):
         @wraps(func)
         def _func(*args, **kwargs):
-            nonlocal _saved
             # <<<<<<< 旧代码
             args_ = tuple(args)
             kwargs_ = frozenset(kwargs.items())
@@ -311,7 +304,6 @@ def my_lru_cache(typed=False):
     def wrapper(func):
         @wraps(func)
         def _func(*args, **kwargs):
-            nonlocal _saved
             if typed:
                 args_ = tuple([(arg, type(arg)) for arg in args])
                 kwargs_ = frozenset([

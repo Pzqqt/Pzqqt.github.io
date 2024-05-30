@@ -46,8 +46,6 @@ Melt Kernel is a kernel that suitable for Redmi Note 12 Turbo/Poco F5(marble/mar
 
 [Source Code](https://github.com/Pzqqt/android_kernel_xiaomi_marble)
 
-[Telegram Group](https://t.me/paradoxkernelmarblediscussion)
-
 [Banner picture source](https://www.pixiv.net/artworks/82352299)
 
 ------
@@ -89,7 +87,5 @@ Melt内核是一款适用于Redmi Note 12 Turbo/Poco F5（marble/marblein）的�
 [下载](https://github.com/Pzqqt/android_kernel_xiaomi_marble/releases)
 
 [源代码](https://github.com/Pzqqt/android_kernel_xiaomi_marble)
-
-[Telegram 群组](https://t.me/paradoxkernelmarblediscussion)
 
 [Banner 图片来源](https://www.pixiv.net/artworks/82352299)
