@@ -76,6 +76,9 @@ blockquote {
     align-items: baseline;
     justify-content: space-evenly;
 }
+.monospace {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
 #totop {
     position: fixed;
     bottom: 120px;

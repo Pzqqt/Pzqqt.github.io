@@ -21,7 +21,7 @@ title: Archive
           {% endif %}
         {% endif %}
                 <li>
-                    {{ post.date | date: "%m-%d" }}
+                    <span class="monospace">{{ post.date | date: "%m-%d" }}</span>
                     <a href="{{ post.url }}">{{ post.slug }}</a>
                 </li>
           {% if post.previous == nil %}

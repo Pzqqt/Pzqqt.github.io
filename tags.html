@@ -18,7 +18,7 @@ title: Tags
             <ul style="line-height: 1.5em;">
               {% for post in tag[1] %}
                 <li>
-                    {{ post.date | date: "%Y-%m-%d" }}
+                    <span class="monospace">{{ post.date | date: "%Y-%m-%d" }}</span>
                     <a href="{{ post.url }}">{{ post.slug }}</a>
                 </li>
               {% endfor %}
