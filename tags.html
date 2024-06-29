@@ -3,10 +3,19 @@ layout: default
 title: Tags
 ---
 
+        <style>
+p.all-tags {
+    font-size: 1.2em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+        </style>
+
         {% assign sorted_tags = site.tags | sort %}
         <h1 class="content-subhead">All tags</h1>
         <div class="content-height-stretch">
-            <p style="font-size: 1.2em; display: flex; flex-wrap: wrap; justify-content: flex-start;">
+            <p class="all-tags">
               {% for tag in sorted_tags %}
                 {% assign tag_name = tag[0] %}
                 {% capture tag_text %}{{ tag[0] }} ({{ tag[1].size }}){% endcapture %}
@@ -15,7 +24,7 @@ title: Tags
             </p>
           {% for tag in sorted_tags %}
             <h2 class="post-title" id="tag_{{ tag[0] }}">{{ tag[0] }}</h2>
-            <ul style="line-height: 1.5em;">
+            <ul class="posts-link-list">
               {% for post in tag[1] %}
                 <li>
                     <span class="monospace">{{ post.date | date: "%Y-%m-%d" }}</span>

@@ -76,6 +76,15 @@ blockquote {
     align-items: baseline;
     justify-content: space-evenly;
 }
+.paginator > .pure-button {
+    width: 6em;
+}
+ul.posts-link-list {
+    line-height: 1.5em;
+}
+.post-image {
+    position: relative;
+}
 .monospace {
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }

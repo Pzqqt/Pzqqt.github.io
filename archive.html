@@ -10,14 +10,14 @@ title: Archive
       {% for post in site.posts %}
         {% if post.next == nil %}
             <h2 class="post-title">{{ post.date | date: '%Y' }}</h2>
-            <ul style="line-height: 1.5em;">
+            <ul class="posts-link-list">
         {% else %}
           {% assign year = post.date | date: '%Y' %}
           {% assign next_year = post.next.date | date: '%Y' %}
           {% if year != next_year %}
             </ul>
             <h2 class="post-title">{{ year }}</h2>
-            <ul style="line-height: 1.5em;">
+            <ul class="posts-link-list">
           {% endif %}
         {% endif %}
                 <li>
