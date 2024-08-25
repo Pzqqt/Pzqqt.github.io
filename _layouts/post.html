@@ -23,4 +23,13 @@ layout: default
               {% endif %}
             </div>
         </section>
+      {% if page.toc == true %}
+        <div id="post-toc">
+            <div class="post-toc-box shadow">
+                <p>Table of Contents</p>
+                {% include toc.html html=content item_class="post-toc-item" %}
+            </div>
+        </div>
+      {% endif %}
+
         <script defer src="/static/pre_copy.js"></script>

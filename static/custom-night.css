@@ -31,6 +31,9 @@ a.heading-anchor {
     color: #555555;
     text-decoration: none;
 }
+#post-toc .post-toc-box {
+    background: #444444;
+}
 ::-webkit-scrollbar-track {
     background: #555555;
 }

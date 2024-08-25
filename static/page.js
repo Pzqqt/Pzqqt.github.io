@@ -31,6 +31,7 @@ $(document).ready(function() {
     let totop_btn = $('#totop');
     let _fs = true;
     let _menu_flag = false;
+    let _toc_obj = $('#post-toc');
     const zooming = new Zooming({
         bgColor: is_night_mode() ? '#000' : '#fff',
         scaleExtra: window.innerWidth < 768 ? 2 : 1,
@@ -78,14 +79,22 @@ $(document).ready(function() {
     $('#menu_button').click(function() {
         if (window.innerWidth < 768) return;
         if (_menu_flag) {
-            $('.content').stop().animate({"margin-left": "25%"}, "slow");
+            if (_toc_obj.length) {
+                _toc_obj.stop().animate({"left": "-25%"}, "slow");
+            } else {
+                $('.content').stop().animate({"margin-left": "25%"}, "slow");
+            }
             $('.sidebar').stop().animate({"margin-left": 0}, "slow");
             $('#menu_button').stop().animate({"right": ".25em"}, "slow");
             if (! is_night_mode())
                 $('#menu_button').css("color", "");
             _menu_flag = false;
         } else {
-            $('.content').stop().animate({"margin-left": "12.5%"}, "slow");
+            if (_toc_obj.length) {
+                _toc_obj.stop().animate({"left": "0%"}, "slow");
+            } else {
+                $('.content').stop().animate({"margin-left": "12.5%"}, "slow");
+            }
             $('.sidebar').stop().animate({"margin-left": "-25%"}, "slow", function() {
                 if (! is_night_mode())
                     $('#menu_button').css("color", "#222");

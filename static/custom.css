@@ -128,6 +128,7 @@ a.heading-anchor {
 a.heading-anchor:hover { color: #777777; }
 .sidebar {
     box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
+    z-index: 10;
 }
 .shadow {
     box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
@@ -140,6 +141,33 @@ a.heading-anchor:hover { color: #777777; }
 }
 #menu_button:hover {
     cursor: pointer;
+}
+/* TOC */
+#post-toc {
+    position: fixed;
+    top: 3em;
+    left: -25%;
+    width: 25%;
+}
+#post-toc .post-toc-box {
+    margin-left: 1em;
+    /* margin-right: 1em; */
+    padding-right: 1em;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    background: #f0f3f3;
+}
+#post-toc p {
+    padding-left: 2em;
+}
+#post-toc ul {
+    padding-left: 2em;
+}
+#post-toc .post-toc-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.5em;
 }
 
 /* Scroll Bar */
@@ -196,7 +224,11 @@ pre::-webkit-scrollbar {
         text-align: left;
     }
     #menu_button {
-    	/* 窄屏时不要显示menu按钮 */
+        /* 窄屏时不要显示menu按钮 */
+        display: none;
+    }
+    #post-toc {
+        /* 窄屏时不要显示浮动TOC */
         display: none;
     }
 }
