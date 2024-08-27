@@ -54,6 +54,7 @@ blockquote {
     border-left: 10px solid #ccccccbb;
     padding: 20px 20px 1px;
     background: #f9f9f977;
+    backdrop-filter: blur(10px);
     border-radius: 5px;
     margin-bottom: 20px;
 }
