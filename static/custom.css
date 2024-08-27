@@ -152,10 +152,10 @@ a.heading-anchor:hover { color: #777777; }
 #post-toc .post-toc-box {
     margin-left: 1em;
     /* margin-right: 1em; */
-    padding-right: 1em;
-    border: 1px solid #bbb;
-    border-radius: 5px;
-    background: #f0f3f3;
+    padding: .5em 1em .5em 0em;
+    border-radius: 10px;
+    background: #f9f9f977;
+    backdrop-filter: blur(10px);
 }
 #post-toc p {
     padding-left: 2em;
