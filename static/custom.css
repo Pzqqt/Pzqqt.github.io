@@ -147,15 +147,20 @@ a.heading-anchor:hover { color: #777777; }
 #post-toc {
     position: fixed;
     top: 3em;
-    left: -25%;
+    left: calc(-25% + 3em);
     width: 25%;
+    transition: left 1s;
+    -webkit-transition: left 1s; /* Safari */
+}
+#post-toc:hover {
+    left: 0%;
 }
 #post-toc .post-toc-box {
     margin-left: 1em;
     /* margin-right: 1em; */
     padding: .5em 1em .5em 0em;
     border-radius: 10px;
-    background: #f9f9f977;
+    background: #dddddd77;
     backdrop-filter: blur(10px);
 }
 #post-toc p {
