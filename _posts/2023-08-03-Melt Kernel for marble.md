@@ -24,7 +24,7 @@ Melt Kernel is a kernel that suitable for Redmi Note 12 Turbo/Poco F5(marble/mar
 - Available TCP congestion algorithm: westwood, reno, cubic, htcp, bbr
 - Add sound control
 - Boeffla wakelock blocker driver v1.1.0
-- Enable DAMON-based reclaim by default
+- ~~Enable DAMON-based reclaim by default~~
 - ~~Kernel-level cpusets parameter optimization, optimize CPU core calls~~
 - ~~Enable CONFIG_HZ_300, faster system response~~
 - Backport "per memcg lru lock" from v5.15
@@ -66,7 +66,7 @@ Melt内核是一款适用于Redmi Note 12 Turbo/Poco F5（marble/marblein）的�
 - 可选TCP拥塞控制算法：westwood，reno，cubic，htcp，bbr
 - 添加音量控制支持
 - Boeffla唤醒锁阻止驱动v1.1.0
-- 默认启用基于DAMON的内存回收功能
+- ~~默认启用基于DAMON的内存回收功能~~
 - ~~内核级cpusets参数优化，优化CPU核心调用~~
 - ~~启用CONFIG_HZ_300，让系统响应更加迅速~~
 - 从v5.15向后移植“per memcg lru lock”
