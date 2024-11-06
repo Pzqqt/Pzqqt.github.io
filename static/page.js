@@ -1,40 +1,20 @@
-function toggle_night_css(enable) {
-    let custom_night_css_href = "/static/custom-night.css";
-    let highlight_light_css_href = "/static/colorful.css";
-    let highlight_night_css_href = "/static/monokai.css";
-    if (enable === "true") {
-        $('head > link[href="/static/custom.css"]').after(
-            $('<link rel="stylesheet" type="text/css" href="' + custom_night_css_href + '">')
-        );
-        $('head > link#_highlight_css').attr({"href": highlight_night_css_href});
-    } else {
-        $('head > link[href="' + custom_night_css_href + '"]').remove();
-        $('head > link#_highlight_css').attr({"href": highlight_light_css_href});
-    }
-}
-function is_night_mode() {
-    return Cookies.get("ui_night_mode") === "true";
-}
-function apply_night_mode(night_mode) {
-    if (night_mode === undefined)
-        night_mode = is_night_mode();
-    if (night_mode) {
-        $('#night_toggle').html('<i class="ri-sun-fill"></i>').attr("title", "Light mode");
-        toggle_night_css("true");
-    } else {
-        $('#night_toggle').html('<i class="ri-moon-line"></i>').attr("title", "Night mode");
-        toggle_night_css();
-    }
-}
-
 $(document).ready(function() {
     let totop_btn = $('#totop');
     let _fs = true;
     let _menu_flag = false;
+    const darkModeToggle = document.querySelector('dark-mode-toggle');
+
+    function is_night_mode() {
+        return darkModeToggle.mode == "dark";
+    }
+
     const zooming = new Zooming({
         bgColor: is_night_mode() ? '#000' : '#fff',
         scaleExtra: window.innerWidth < 768 ? 2 : 1,
     });
+
+    if (is_night_mode())
+        $('#night_toggle').html('<i class="ri-sun-fill"></i>').attr("title", "Light mode");
 
     $(window).resize(function(){
         zooming.config({scaleExtra: window.innerWidth < 768 ? 2 : 1});
@@ -67,12 +47,14 @@ $(document).ready(function() {
     });
 
     $('#night_toggle').click(function() {
-        let new_night_mode = !is_night_mode();
-        Cookies.set("ui_night_mode", new_night_mode);
-        apply_night_mode(new_night_mode);
-        zooming.config({bgColor: new_night_mode ? '#000' : '#fff'});
+        darkModeToggle.mode = is_night_mode() ? "light" : "dark";
+        zooming.config({bgColor: is_night_mode() ? '#000' : '#fff'});
+        if (is_night_mode())
+            $('#night_toggle').html('<i class="ri-sun-fill"></i>').attr("title", "Light mode");
+        else
+            $('#night_toggle').html('<i class="ri-moon-line"></i>').attr("title", "Night mode");
         if (_menu_flag)
-            $('#menu_button').css("color", new_night_mode ? "#fff" : "#222");
+            $('#menu_button').css("color", is_night_mode() ? "#fff" : "#222");
     });
 
     $('#menu_button').click(function() {

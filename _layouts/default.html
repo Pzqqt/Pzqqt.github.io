@@ -15,7 +15,13 @@
     <style>html { font-family: "MiSans VF",sans-serif; }</style>
     <link rel="stylesheet" type="text/css" href="/static/blog.css">
     <link rel="stylesheet" type="text/css" href="/static/custom.css">
-    <link rel="stylesheet" type="text/css" href="/static/colorful.css" id="_highlight_css">
+  <noscript id="dark-mode-toggle-stylesheets">
+    <link rel="stylesheet" type="text/css" href="/static/custom-night.css" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" type="text/css" href="/static/colorful.css" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" type="text/css" href="/static/monokai.css" media="(prefers-color-scheme: dark)">
+  </noscript>
+    <script src="/static/dark-mode-toggle-stylesheets-loader.js"></script>
+    <script type="module" src="https://unpkg.com/dark-mode-toggle"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="/static/js.cookie-3.0.4.min.js"></script>
     <script src="/static/zooming.min.js"></script>
@@ -23,6 +29,8 @@
 </head>
 
 <body>
+
+<dark-mode-toggle permanent="true" style="display: none;"></dark-mode-toggle>
 
 <div id="layout" class="pure-g">
     <div class="sidebar pure-u-1 pure-u-md-1-4">
@@ -83,9 +91,5 @@
 <button id="totop" class="pure-button pure-button-primary shadow" title="To top"><i class="ri-arrow-up-line"></i></button>
 
 </body>
-
-<script>
-    Cookies.get("ui_night_mode") === "true" && apply_night_mode();
-</script>
 
 </html>
