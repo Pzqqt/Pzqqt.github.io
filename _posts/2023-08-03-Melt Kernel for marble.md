@@ -28,8 +28,8 @@ Melt Kernel is a kernel that suitable for Redmi Note 12 Turbo/Poco F5(marble/mar
 - ~~Kernel-level cpusets parameter optimization, optimize CPU core calls~~
 - ~~Enable CONFIG_HZ_300, faster system response~~
 - Backport "per memcg lru lock" from v5.15
-- Backport zsmalloc from v6.5
-- Backport zram from v6.4
+- ~~Backport zsmalloc from v6.5~~
+- ~~Backport zram from v6.4~~
 - Backport NTFS3 from v5.15
 - Enable TTL/HMARK target support
 - Latest zstd driver
@@ -70,8 +70,8 @@ Melt内核是一款适用于Redmi Note 12 Turbo/Poco F5（marble/marblein）的�
 - ~~内核级cpusets参数优化，优化CPU核心调用~~
 - ~~启用CONFIG_HZ_300，让系统响应更加迅速~~
 - 从v5.15向后移植“per memcg lru lock”
-- 从v6.5向后移植zsmalloc
-- 从v6.4向后移植zram
+- ~~从v6.5向后移植zsmalloc~~
+- ~~从v6.4向后移植zram~~
 - 从v5.15向后移植NTFS3
 - 启用TTL/HMARK target支持
 - 最新的zstd驱动
