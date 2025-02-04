@@ -223,9 +223,9 @@ AnyKernel3方面，因为KernelSU v0.6.9与Magisk不兼容（KernelSU在后续�
 
 到了v2.4，我才意识到之前简简单单替换vendor_boot和vendor_boot的内核模块的做法还是太危险了，因为你无法假设用户现有的内核模块都是啥。因此，最好是跟v2.0版本一样：全换了。但这次我不打算直接刷分区了，而是跟前几个版本一样在现有的基础上改。
 
-然后，v2.3版本不是引入了一个提前检测super分区大小的方法嘛？实际上没卵用，`blockdev --getsize64 /dev/block/by-name/super`返回的的永远都是正确的`9663676416`，但我又发现，`lptools_static`在读取到了错误的super分区大小的同时，`lpdump`也会读取错，因此，“提前检查super分区大小是否正常”的任务就交给`lpdump`了，相关提交：[1](https://github.com/Pzqqt/AnyKernel3/commit/1f2074c3223c9dd2c98ea63d4defbad59d8ea6a6)。
+然后，v2.3版本不是引入了一个提前检测super分区大小的方法嘛，实际上没卵用，`blockdev --getsize64 /dev/block/by-name/super`返回的的永远都是正确的`9663676416`，但我又发现，`lptools_static`在读取到了错误的super分区大小的同时，`lpdump`也会读取错，因此，“提前检查super分区大小是否正常”的任务就交给`lpdump`了，相关提交：[1](https://github.com/Pzqqt/AnyKernel3/commit/1f2074c3223c9dd2c98ea63d4defbad59d8ea6a6)。
 
-再仔细研究一下，`lptools_static`在什么情况下会被用到？是在逻辑分区的大小需要调整时才会用到，不管要刷入的镜像文件和分区大小哪个更大，只要镜像文件的大小和分区大小对不上就得调。
+再仔细研究一下，`lptools_static`在什么情况下会被用到？是在逻辑分区的大小需要调整时才会用到，不管要刷入的镜像文件和分区哪个更大，只要对不上就得调。
 
 对于erofs的vendor_dlkm分区，在安装不同版本的Melt Kernel时，生成的新的vendor_dlkm分区镜像大小总是不一样，因此每次都得调。那么，可不可以不调？当然可以！如果新生成的vendor_dlkm分区镜像比现在的vendor_dlkm分区大小要小，那就在vendor_dlkm分区镜像的末尾填充`\x00`，填充到和vendor_dlkm分区大小一样不就行了？对于ext4的vendor_dlkm分区镜像，除非必须得扩容，不然vendor_dlkm分区镜像大小会和之前保持一致，此时也没必要检查super分区大小是否正常了。
 
@@ -265,7 +265,7 @@ v2.5发布的时候，由于天朝版HyperOS难产了，`HyperOS.eu`也迟迟未
 
 AnyKernel3方面，我添加了三个新的安装时选项：
 
-1. 让用户选择是否总是启用360HZ触控采样率。很早以前就有人发现，写入除“0”以外的其他任意字符串到`/sys/devices/platform/goodix_ts.0/goodix_ts_report_rate`即可将触控采样率从默认的240HZ提高到最高360HZ，但是熄屏重新亮屏后失效，而且并不是所有用户都会用shell命令，因此我猜肯定会有人喜欢这个功能。相关提交：[1](https://github.com/Pzqqt/AnyKernel3/commit/a5988575fdf9cfe1501c6cabd0079b65a66c3836)。
+1. 让用户选择是否总是启用360HZ触控采样率。很早以前就有人发现，写入除“0”以外的其他任意字符串到`goodix_ts_report_rate`节点即可将触控采样率从默认的240HZ提高到最高360HZ，但是熄屏重新亮屏后失效，而且并不是所有用户都会用shell命令，因此我猜肯定会有人喜欢这个功能。相关提交：[1](https://github.com/Pzqqt/AnyKernel3/commit/a5988575fdf9cfe1501c6cabd0079b65a66c3836)。
 2. 让用户选择是否修复在AOSP rom上电池使用情况数据异常的问题。相关提交：[2](https://github.com/Pzqqt/AnyKernel3/commit/d0d15e46c6fcea3ebcf0ba12f864ca66f8052ffd)。
 3. 让用户选择是否显示更加真实的电量百分比，来自秋秋大佬的idea。相关提交：和2相同。
 
@@ -284,13 +284,13 @@ AnyKernel3方面，我添加了三个新的安装时选项：
 
 ## Melt Kernel v2.7（2024.05.03）
 
-v2.7发布时，KernelSU更新带来了一种全新的安装方式：LKM（Loadable Kernel Module）。关于LKM，我在Telegram频道已经简单地分析过来，坦白讲，我不喜欢这种安装方式，但它又的的确确解决了很多长久以来难以安装KernelSU的难题。对此，Melt Kernel的处理方式为：如果检测到用户已通过LKM安装了KernelSU，就不能安装带KernelSU支持的Melt Kernel内核镜像（因为重复了嘛）。
+v2.7发布时，KernelSU更新带来了一种全新的安装方式：LKM（Loadable Kernel Module）。关于LKM，我在Telegram频道已经简单地分析过了，坦白讲，我不喜欢这种安装方式，但它又的的确确解决了很多长久以来难以安装KernelSU的问题。对此，Melt Kernel的处理方式为：如果检测到用户已通过LKM安装了KernelSU，就不能安装带KernelSU支持的Melt Kernel内核镜像（因为重复了嘛）。
 
-另外，diting的`perfmgr.ko`（和FEAS有关的内核模块）在HyperOS中也得到了更新，为了让Melt Kernel也能加载它，我将`sched-walt.ko`也更新为从diting的HyperOS中提取的版本。与此同时，为了更便于维护以及更好的兼容性，现在Melt Kernel不再检测并保留vendor_boot分区的`perfmgr.ko`。
+另外，diting的`perfmgr.ko`（和FEAS有关的内核模块）在HyperOS中也得到了更新，为了让Melt Kernel也能加载它，我将`sched-walt.ko`也更新为从diting的HyperOS中提取的版本。与此同时，为了便于维护以及更好的兼容性，现在Melt Kernel不再检测并保留vendor_boot分区的`perfmgr.ko`。
 
 也是在这个时候，有很多用户开始反馈Melt Kernel在EvolutionX rom上难以启动，好不容易让用户抓到了log，结果log全都是millet产生的垃圾日志，实在是令人不爽。millet是小米自己魔改的“墓碑”模块（说实话我不喜欢这个称呼），在AOSP rom上若没有配置好确实会产生大量的垃圾日志，既然如此，那干脆就不要在AOSP rom上加载millet相关的内核模块了，相关提交：[1](https://github.com/Pzqqt/AnyKernel3/commit/b88a104436281520915ff8207b7469dea1b292e1)。
 
-并且，从这个版本开始，Melt Kernel正式可以和其他GKI搞混搭了：安装Melt Kernel之后，保留Melt Kernel的内核模块，并安装使用另一个内核。 理想情况下，之前版本的Melt Kernel应该也可以搞混搭才对，但并不行，因为我在编译Melt Kernel时忽略了一点：按照Google的要求，供应商内核模块只能使用被KMI保护的符号，因此在标准的GKI 2.0编译流程中，不被KMI保护的符号不应该存在于内核镜像中，应该被“修剪”掉。之前我给Melt Kernel pick了一个看似人畜无害的提交：[arm64: Kconfig: Enable GENERIC_FIND_FIRST_BIT](https://github.com/Pzqqt/android_kernel_xiaomi_marble/commit/7674e68d2f3c09f8e4561c836ff02ae4b55cff26)，这个提交使得内核镜像额外导出了一个函数符号`find_first_bit`，而这个函数符号又恰恰被`mac80211.ko`所使用，结果就是：用户刷了其他GKI，但其他的GKI或许没有导出`find_first_bit`这个符号，那么`mac80211.ko`加载就会失败，且由于`mac80211.ko`是在第一启动阶段加载的，因此加载失败的后果就是init死掉，kernel panic。当我发现了这个问题之后，后续版本的Melt Kernel我都已经按照Google的规定“修剪”掉了非KMI符号。
+并且，从这个版本开始，Melt Kernel正式可以和其他GKI搞混搭了：安装Melt Kernel之后，保留Melt Kernel的内核模块，并安装使用另一个内核。 理想情况下，之前版本的Melt Kernel应该也可以搞混搭才对，但并不行，因为我在编译Melt Kernel时忽略了一点：按照Google的要求，供应商内核模块只能使用被KMI保护的符号，因此在标准的GKI 2.0编译流程中，不被KMI保护的符号应该被修剪掉。之前我给Melt Kernel pick了一个看似人畜无害的提交：[arm64: Kconfig: Enable GENERIC_FIND_FIRST_BIT](https://github.com/Pzqqt/android_kernel_xiaomi_marble/commit/7674e68d2f3c09f8e4561c836ff02ae4b55cff26)，这个提交使得内核镜像额外导出了一个函数符号`find_first_bit`，而这个函数符号又恰恰被`mac80211.ko`所使用，结果就是：用户刷了其他GKI，但其他的GKI或许没有导出`find_first_bit`这个符号，那么`mac80211.ko`加载就会失败，且由于`mac80211.ko`是在第一启动阶段加载的，因此加载失败的后果就是init死掉，kernel panic。当我发现了这个问题之后，后续版本的Melt Kernel我都已经按照Google的规定修剪掉了非KMI符号。
 
 ## Melt Kernel v2.8（2024.06.16）
 
@@ -330,7 +330,7 @@ AnyKernel3方面也有很多改进，首先，magiskboot终于支持从[Header V
 
 跟进的结果是什么呢？用户从旧版本升级Melt Kernel之后又遇到问题了，要么安装失败提示`Splitting image failed. Aborting...`，要么安装程序直接卡死。原因自然是旧版本的magiskboot不正确地处理vendor_boot分区把它搞坏了，但到底是哪里坏了应该怎么修，现在还不清楚。
 
-另一个结果是，一些用户安装了Melt Kernel之后系统无法启动了，TWRP也无法解密data了，dirty flash rom或还原以前备份的内核之后问题解决，我测试了很多次都无法复现，从用户提供的recovery log中也只是发现解密服务没有跑起来，其他便没有更多的信息了。
+另一个结果是，一些用户安装了Melt Kernel之后系统无法启动了，TWRP也无法解密data了，dirty flash rom、或是还原以前备份的内核、或是格式化data分区之后问题解决，我测试了很多次都无法复现，从用户提供的recovery log中也只是发现解密服务没有跑起来，其他便没有更多的信息了。由于掌握的信息太少，因此该问题目前仍然无解。
 
 问题多到令我头疼，没办法，以后慢慢研究慢慢修咯。
 
@@ -342,7 +342,7 @@ AnyKernel3方面也有很多改进，首先，magiskboot终于支持从[Header V
 
 不得不说，放下包袱，一身轻松！
 
-另外，v3.1版本中设备无法启动TWRP无法解密的问题在Telegram用户@xStormx01的辛勤测试下终于修好了，非常感谢他！原因也很让人抓狂，我一直以为是把vendor_boot分区搞坏了导致的，结果坏掉的不是vendor_boot，而是boot！新版本的magiskboot采用的libc有问题，在打包boot镜像时把异常的`OS_PATCH_LEVEL`日期信息写到boot镜像里了，bootloader识别到boot分区的`OS_PATCH_LEVEL`不正常，于是解密服务就跟着寄了，在Magisk仓库提交issue之后，目前先临时规避这个问题：打包boot镜像时不要碰`OS_PATCH_LEVEL`信息，相关提交：[1](https://github.com/Pzqqt/AnyKernel3/commit/6235fa1a9b53da7a297a2b973240d204d2fd613f)。
+另外，v3.1版本中设备无法启动TWRP无法解密的问题在Telegram用户@xStormx01的辛勤测试下终于修好了，非常感谢他！原因也很让人抓狂，我一直以为是把vendor_boot分区搞坏了导致的，结果坏掉的不是vendor_boot，而是boot！新版本的magiskboot采用的libc有问题，在打包boot镜像时把异常的`OS_PATCH_LEVEL`日期信息写到boot镜像里了，bootloader识别到boot分区的`OS_PATCH_LEVEL`不正常，于是解密服务就跟着寄了。在Magisk仓库提交issue之后，目前先临时规避这个问题：打包boot镜像时不要碰`OS_PATCH_LEVEL`信息，相关提交：[1](https://github.com/Pzqqt/AnyKernel3/commit/6235fa1a9b53da7a297a2b973240d204d2fd613f)。
 
 而且，在这个版本中我实现了回滚机制。目前Melt Kernel会依次更新并刷写boot、vendor_dlkm、vendor_boot这三个分区，其中任意一步失败并中止，安装都是不完整的。因此，现在安装程序在安装过程中会保留安装之前未经修改的各个分区镜像，如果安装中止，就将未经修改的分区镜像刷回去，避免让用户产生“我安装成功了”的错觉，相关提交：[2](https://github.com/Pzqqt/AnyKernel3/commit/9318fc0f89ef878245d435ece9c622002e117a3e)。
 
@@ -356,7 +356,7 @@ v3.1版本中遇到的另一个问题（即：要么安装失败要么安装程�
 
 现在我意识到：为什么以前Melt Kernel支持基于OSS kernel的rom支持得这么困难？还不是因为OSS kernel的dtb、dtbo跟小米预编译的模块对不上嘛，解决方法也很简单：我把dtb、dtbo也换成小米预编译的不就行了？
 
-经过了用户测试之后，确实，这样直接让我省了不少心，至少我不用再内置两套触屏驱动和红外驱动了。
+经过了用户测试之后，效果还不错，功能都基本正常，这样直接让我省了不少心，至少我不用再内置两套触屏驱动和红外驱动了。
 
 考虑到很多用户都喜欢用[KonaBess](https://github.com/libxzr/KonaBess)给GPU超频/降压，直接替换dtb的结果就是用户的GPU超频/降压配置会丢失，因此，为方便起见，Melt Kernel会在替换dtb之前，拷贝用户现有的GPU超频/降压配置到新的dtb，相关提交：[1](https://github.com/Pzqqt/AnyKernel3/commit/c5522a3277856e9dad299e530a945747450a2f9d)。
 
@@ -378,7 +378,7 @@ v3.1版本中遇到的另一个问题（即：要么安装失败要么安装程�
 
 总之，这个令我疑惑了一年多的问题现在终于是解决了。
 
-另外，在深入研读了Google有关Header V4的文档之后，我也终于琢磨透了v3.1版本中另一个等待解决的问题（即：要么安装失败要么安装程序卡死）的原因了。
+另外，在深入研读了Google有关Header V4的文档之后，我也终于琢磨透了该如何解决v3.1版本中另一个等待解决的问题了（即：要么安装失败要么安装程序卡死）。
 
 先看看Header V4 vendor_boot分区的格式定义：
 
@@ -433,15 +433,15 @@ struct vendor_ramdisk_table_entry_v4
 };
 ```
 
-简单来说，Header V4格式的vendor_boot分区可以拥有多个vendor_ramdisk，文件头部的`vendor_ramdisk_size`为所有vendor_ramdisk的大小之和，而在`vendor_ramdisk_table_entry_v4`部分又保存了各个vendor_ramdisk的信息。
+简单来说，Header V4格式的vendor_boot分区可以拥有多个vendor_ramdisk，文件头部的`vendor_ramdisk_size`为所有vendor_ramdisk的大小之和，而在`vendor_ramdisk_table_entry_v4`部分又保存了各个vendor_ramdisk的大小等信息。
 
-新版本的magiskboot能够正确处理Header V4格式的vendor_boot分区，在重新打包时，magiskboot会读取之前解包后生成的各个vendor_ramdisk的大小，然后正确写入到`vendor_ramdisk_table_entry_v4`和`vendor_ramdisk_size`。
+新版本的magiskboot能够正确处理Header V4格式的vendor_boot分区，在重新打包时，magiskboot会读取解包后的各个vendor_ramdisk的大小，然后正确写入到`vendor_ramdisk_table_entry_v4`和`vendor_ramdisk_size`。
 
 但是旧版本的magiskboot无法正确处理它。现在我们先不考虑有多个vendor_ramdisk的情况，假设vendor_boot分区只有一个vendor_ramdisk，那么此时`vendor_ramdisk_size`和仅有的一条`vendor_ramdisk_table_entry_v4->ramdisk_size`应该是完全相等的，这很好理解。但是旧版本的magiskboot在处理vendor_boot分区时，不会处理`vendor_ramdisk_table_entry_v4`，它只会处理位于分区头部的`vendor_ramdisk_size`，也就是说，在重新打包时，如果vendor_ramdisk的大小发生了变化，那么只有`vendor_ramdisk_size`得到了更新，`vendor_ramdisk_table_entry_v4->ramdisk_size`不会被更新。
 
 如果一直沿用旧版本的magiskboot，倒也没什么问题，但是，新版本的magiskboot是依据`vendor_ramdisk_table_entry_v4`的信息来提取vendor_ramdisk的，如果`vendor_ramdisk_size`和仅有的一条`vendor_ramdisk_table_entry_v4->ramdisk_size`对不上，那么提取出来的vendor_ramdisk就是损坏的。
 
-如果`vendor_ramdisk_size > vendor_ramdisk_table_entry_v4->ramdisk_size`，那么提取出来的vendor_ramdisk不完整，结果是`Splitting image failed. Aborting...`；如果`vendor_ramdisk_size < vendor_ramdisk_table_entry_v4->ramdisk_size`，那么提取出来的vendor_ramdisk文件末尾有额外的信息，结果是magiskboot卡死（也有可能还是`Splitting image failed. Aborting...`）。
+如果`vendor_ramdisk_size > vendor_ramdisk_table_entry_v4->ramdisk_size`，那么提取出来的vendor_ramdisk不完整，结果是`Splitting image failed. Aborting...`；如果`vendor_ramdisk_size < vendor_ramdisk_table_entry_v4->ramdisk_size`，那么提取出来的vendor_ramdisk文件末尾有额外的数据，结果是magiskboot卡死（也有可能还是`Splitting image failed. Aborting...`）。
 
 一切都搞明白之后，修复方法也就很明显了：检测并修复vendor_boot分区，确保`vendor_ramdisk_size`与仅有的一个`vendor_ramdisk_table_entry_v4->ramdisk_size`保持一致，相关提交：[2](https://github.com/Pzqqt/AnyKernel3/commit/7cc7a4271a7a4733b040b56d52406925c41d1dd8)。如果还是解决不了问题，那通常dirty flash rom之后肯定就能解决。
 
@@ -453,13 +453,13 @@ v3.4是一个相对来说很平静的版本。
 
 内核方面：
 
-1. 现在在编译内核镜像时会在LD阶段和LTO阶段启用3级优化，优点我不知道，缺点是内核镜像文件大了1~2MB，生成的差分补丁直接从1~2MB变成了6~7MB。
-2. 还原了从v6.x向后移植zsmalloc和zram的提交（因为若启用ZRAM WriteBack特性的话会编译失败，懒得修），并且启用了RAM WriteBack特性（为什么我到现在才发现）。
+1. 现在在编译内核镜像时会在LD阶段和LTO阶段启用3级优化，优点我不知道，缺点是未压缩的内核镜像文件大了1~2MB，生成的差分补丁直接从1~2MB变成了6~7MB。
+2. 还原了从v6.x向后移植zsmalloc和zram的提交（因为如果启用ZRAM WriteBack特性的话会编译失败，懒得修），并且启用了RAM WriteBack特性（为什么我到现在才发现）。
 3. 修好了DT2W在基于OSS kernel的rom上不好使的问题。
 
-AnyKernel3方面，现在安装器会首先猜测并询问用户当前在使用哪种rom（MIUI/HyperOS、AOSPA、基于OSS kernel的rom），如果rom类型已确定，那么后续的很多选项安装程序会自己做决定，不用再麻烦用户选择。同时，考虑到用户有时可能会手残选错，因此在最后添加了额外的一个选项，选No的话则直接终止安装程序，给用户重新选择的机会。
+AnyKernel3方面，现在安装器会首先猜测并询问用户当前在使用哪种rom（MIUI/HyperOS、AOSPA、基于OSS kernel的rom），如果rom类型已确定，那么后续的很多选项安装程序会自己做决定，不用再麻烦用户选择。同时，考虑到用户有时可能会手残选错，因此在最后额外添加了一个选项，选No的话则直接终止安装程序，给用户重新选择的机会。
 
-另外，小米在`OS1.0.12.0.UMRCNXM`中改动了`qti_battery_charger_main.ko`，同时给firmware里的adsp2也改了一手。结果是：快充失效了，“显示真实电量”的特性炸了（本来应该显示电量百分比的结果显示成电池电压了），似乎还会导致异常重启。IDA，启动！花了两三个小时，问题解决，相关提交：[1](https://github.com/Pzqqt/android_kernel_xiaomi_marble/commit/fe1477e444a9d3c4796fc76f9b95a7764af277dd)。
+另外，小米在`OS1.0.12.0.UMRCNXM`中改动了`qti_battery_charger_main.ko`，同时给firmware里的adsp2也改了一手。结果是：快充失效了，“显示真实电量”的特性炸了（本来应该显示电量百分比，结果显示成电池电压了），似乎还会导致异常重启。IDA，启动！花了两三个小时，问题解决，相关提交：[1](https://github.com/Pzqqt/android_kernel_xiaomi_marble/commit/fe1477e444a9d3c4796fc76f9b95a7764af277dd)。
 
 ## Melt Kernel v3.5（2025.01.09）
 
@@ -469,7 +469,7 @@ AnyKernel3方面，现在安装器会首先猜测并询问用户当前在使用�
 
 ## Melt Kernel v3.6（2025.02.02）
 
-自打v3.4把缺失的ZRAM WriteBack特性补上之后，我才意识到或许小米预编译的`zsmalloc.ko`和`zram.ko`针对自家rom有特殊优化，强制使用开源的zsmalloc模块和zram模块并不可取。因此在这个版本，Melt Kernel不再把zsmalloc和zram编译进内核镜像，并且允许MIUI/HyperOS用户从小米预编译的zram内核模块和开源的zram内核模块种选择其一（其他rom则强制使用开源的zram内核模块）。
+自打v3.4把缺失的ZRAM WriteBack特性补上之后，我才意识到或许小米预编译的`zsmalloc.ko`和`zram.ko`针对自家rom有特殊优化，强制使用开源的zsmalloc模块和zram模块并不可取。因此在这个版本，Melt Kernel不再把zsmalloc和zram编译进内核镜像，而是编译为内核模块，并且允许MIUI/HyperOS用户从小米预编译的zram内核模块和开源的zram内核模块种选择其一（其他rom则强制使用开源的zram内核模块）。
 
 另外，在安装过程中又新增了一个选项，允许用户将GPU型号伪装称8+ Gen1同款的Adreno 730，理论上可以在某些手游种解锁更高的画质或帧率。这个点子来自于我逛某安时偶然看到的某个用户的诉求。伪装的原理也很简单：修改dtb，[以前在whyred的Panda内核上也这么干过](https://github.com/Pzqqt/android_kernel_xiaomi_whyred/commit/7b19aea66e4bcd5bcaac16e3ecfe1346153200df)。
 
