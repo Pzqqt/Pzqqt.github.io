@@ -2,6 +2,7 @@
 layout: post
 tags: Android
 excerpt_separator: <!--more-->
+toc: true
 ---
 
 *记录某菜鸡内核开发者开发某辣鸡内核的心路历程...*
