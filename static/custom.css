@@ -163,6 +163,10 @@ a.heading-anchor:hover { color: #777777; }
     background: #dddddd77;
     backdrop-filter: blur(10px);
 }
+#post-toc .post-toc-box > ul {
+    max-height: calc(40vh);
+    overflow-y: auto;
+}
 #post-toc p {
     padding-left: 2em;
 }
