@@ -117,6 +117,7 @@ h3 {
     color: #fff;
     background: #999;
     font-size: 80%;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
 }
     .post-category-green {
         background: #5aba59;
