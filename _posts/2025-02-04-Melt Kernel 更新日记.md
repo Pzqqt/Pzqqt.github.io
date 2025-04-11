@@ -506,6 +506,45 @@ echo 5 > /sys/class/qcom-battery/fake_soc
 
 剩下就没啥好说的了，常规更新。
 
-## Melt Kernel v3.8（2025.??.??）
+## Melt Kernel v3.8（2025.04.10）
+
+marble的官方版HyperOS 2终于在用户们的一片骂声中千呼万唤始出来。拆包分析，正如我之前所猜测的，内核模块、dtb、dtbo这些和HyperOS 1基本没啥区别，因此HyperOS 2用户可以直接刷上个v3.7版本，基本0 bug，但按照惯例，Melt Kernel还是将dtb、dtbo、以及用于HyperOS firmware的内核模块同步进行了更新。
+
+在阅读[MKSU](https://github.com/5ec1cff/KernelSU)的源代码时，我发现在内核部分，除了用于验证管理器app的签名信息（证书的长度和哈希）不同以外，其他和KernelSU基本完全一样。因此，理论上把MKSU的签名信息添加到内核即可同时支持KernelSU官方版和MKSU，试了一下，确实可行。而对于其他非官方版本的KernelSU，由于各种奇奇怪怪的魔改，我认为还是不去主动兼容比较好。
+
+顺便，我稍微重构了一下KernelSU在内核层验证管理器apk的方法。之前比较常见的添加额外的签名信息的方法，是在`is_manager_apk`函数中再进行一次`check_v2_signature`。
+
+```diff
+diff --git a/kernel/apk_sign.c b/kernel/apk_sign.c
+--- a/kernel/apk_sign.c
++++ b/kernel/apk_sign.c
+@@ -316,5 +316,6 @@ module_param_cb(ksu_debug_manager_uid, &expected_size_ops,
+ 
+ bool is_manager_apk(char *path)
+ {
+-	return check_v2_signature(path, EXPECTED_SIZE, EXPECTED_HASH);
++	return check_v2_signature(path, EXPECTED_SIZE, EXPECTED_HASH)
++	    || check_v2_signature(path, 384, "7e0c6d7278a3bb8e364e0fcba95afaf3666cf5ff3c245a3b63c8833bd0445cc4");  // MKSU
+ }
+```
+
+这样意味着，在`is_manager_apk`函数中检查一个apk是否是KernelSU的管理器apk时，是重复多次打开并读取一个apk文件。
+
+简单介绍一下校验的流程：内核打开并读取apk文件，通过apk文件的特殊结构，找到v2签名信息的部分，先检查证书的长度是否对得上，如果对上了再计算证书信息的哈希，如果哈希也对上了那么这个apk就是KernelSU的管理器apk。
+
+经过我重构改进后的校验流程为：和以前一样打开并读取apk文件的v2签名信息，读取到证书长度和证书信息之后，总是计算证书信息的哈希，然后再拿证书的长度和计算得到的哈希与所有有效的签名信息一一进行比较，如果比对上了那么这个apk就是KernelSU的管理器apk。相关提交：[1](https://github.com/Pzqqt/android_kernel_xiaomi_marble/commit/b005bf59577132365d6d60aad9f6debb31995e80) [2](https://github.com/Pzqqt/android_kernel_xiaomi_marble/commit/f91e5c4576dc6ddedeb88316fe6f8146ffcbe501)。
+
+这样改进之后，对于一个apk文件只需打开并读取一次即可完成多个有效签名信息的校验，但其实这样改也是有一些缺点的，相信读者应该能感受出来。
+
+官方版HyperOS 2发布之后，有些用户开始跟我反馈刷了Melt Kernel之后超级小爱打不开了，我怎么联想都想不到app打不开怎么会和内核牵扯上，但最后通过用户提供的app崩溃日志，再反编译超级小爱apk同步进行分析，终于找到了原因所在：你还别说，还真是Melt Kernel的锅，原因是超级小爱在尝试从`/sys/devices/virtual/thermal/thermal_message/board_sensor_temp`读取温度时读取到了空字符串，这个节点和`mi_thermal_interface.ko`这个内核模块有关，而在以前，为了满足我的强迫症，我稍微修改其源代码并重新编译了`mi_thermal_interface.ko`，进而导致了这个问题。在将`mi_thermal_interface.ko`替换为小米预编译的之后，问题解决。
+
+另外，从这个版本开始，在支持安装内核的app（比如[KernelFlasher](https://github.com/capntrips/KernelFlasher)）中安装Melt Kernel时，如果检测到系统语言为简体中文，那么提示文本将以简体中文显示（由于目前没有稳定且准确的检测TWRP/OFRP语言的方式，因此在recovery模式安装Melt Kernel时，提示文本仍然只能以英文显示）。
+
+剩下的就是常规更新了，顺便写一些在changelog中没提到的更新优化：
+
+- 简化了触屏驱动，移除了从未使用的手写笔的支持，理论上触屏响应速度会更快。
+- 进一步过滤垃圾内核日志，现在在启用[disable_audit_log](https://github.com/Pzqqt/android_kernel_xiaomi_marble/commit/1ce5658804ebc1cb2c61a1a475d59d7ecf9c2a32)之后，不仅内核产生的avc日志会被过滤，用户空间产生的avc日志也会被过滤。
+
+## Melt Kernel v3.9（2025.??.??）
 
 *（未完待续...）*
