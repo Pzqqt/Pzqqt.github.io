@@ -106,7 +106,7 @@ ul.posts-link-list {
     height: 50px;
 }
 .post-description > p {
-    overflow-x: hidden;
+    word-wrap: break-word;
 }
 .task-list-item-checkbox {
     margin-right: 0.5em;
@@ -219,10 +219,6 @@ pre::-webkit-scrollbar {
     .content-height-stretch {
         /* 宽屏时对该元素适用最小高度 */
         min-height: calc(100vh);
-    }
-    /* 宽屏时阻止code折行 */
-    code {
-        white-space: nowrap;
     }
     pre code {
         white-space: pre;
