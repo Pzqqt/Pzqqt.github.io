@@ -510,7 +510,7 @@ echo 5 > /sys/class/qcom-battery/fake_soc
 
 marble的官方版HyperOS 2终于在用户们的一片骂声中千呼万唤始出来。拆包分析，正如我之前所猜测的，内核模块、dtb、dtbo这些和HyperOS 1基本没啥区别，因此HyperOS 2用户可以直接刷上个v3.7版本，基本0 bug，但按照惯例，Melt Kernel还是将dtb、dtbo、以及用于HyperOS firmware的内核模块同步进行了更新。
 
-在阅读[MKSU](https://github.com/5ec1cff/KernelSU)的源代码时，我发现在内核部分，除了用于验证管理器app的签名信息（证书的长度和哈希）不同以外，其他和KernelSU基本完全一样。因此，理论上把MKSU的签名信息添加到内核即可同时支持KernelSU官方版和MKSU，试了一下，确实可行。而对于其他非官方版本的KernelSU，由于各种奇奇怪怪的魔改，我认为还是不去主动兼容比较好。
+在阅读[MKSU](https://github.com/5ec1cff/KernelSU)的源代码时，我发现在内核部分，除了用于验证管理器app的签名信息（证书的长度和哈希）不同以外，其他和KernelSU基本完全一样。因此，理论上只需把MKSU的签名信息添加到内核即可同时支持KernelSU官方版和MKSU，试了一下，确实可行。而对于其他非官方版本的KernelSU，由于各种奇奇怪怪的魔改，我认为还是不去主动兼容比较好。
 
 顺便，我稍微重构了一下KernelSU在内核层验证管理器apk的方法。之前比较常见的添加额外的签名信息的方法，是在`is_manager_apk`函数中再进行一次`check_v2_signature`。
 
@@ -536,7 +536,7 @@ diff --git a/kernel/apk_sign.c b/kernel/apk_sign.c
 
 这样改进之后，对于一个apk文件只需打开并读取一次即可完成多个有效签名信息的校验，但其实这样改也是有一些缺点的，相信读者应该能感受出来。
 
-官方版HyperOS 2发布之后，有些用户开始跟我反馈刷了Melt Kernel之后超级小爱打不开了，我怎么联想都想不到app打不开怎么会和内核牵扯上，但最后通过用户提供的app崩溃日志，再反编译超级小爱apk同步进行分析，终于找到了原因所在：你还别说，还真是Melt Kernel的锅，原因是超级小爱在尝试从`/sys/devices/virtual/thermal/thermal_message/board_sensor_temp`读取温度时读取到了空字符串，这个节点和`mi_thermal_interface.ko`这个内核模块有关，而在以前，为了满足我的强迫症，我稍微修改其源代码并重新编译了`mi_thermal_interface.ko`，进而导致了这个问题。在将`mi_thermal_interface.ko`替换为小米预编译的之后，问题解决。
+官方版HyperOS 2发布之后，有些用户开始跟我反馈刷了Melt Kernel之后超级小爱打不开了，我怎么联想都想不到app打不开会和内核牵扯上，但最后通过用户提供的app崩溃日志，再反编译超级小爱apk同步进行分析，终于找到了原因所在：你还别说，还真是Melt Kernel的锅，原因是超级小爱在尝试从`/sys/devices/virtual/thermal/thermal_message/board_sensor_temp`读取温度时读取到了空字符串，这个节点和`mi_thermal_interface.ko`这个内核模块有关，而在以前，为了满足我的强迫症，我稍微修改其源代码并重新编译了`mi_thermal_interface.ko`，进而导致了这个问题。在将`mi_thermal_interface.ko`替换为小米预编译的之后，问题解决。
 
 另外，从这个版本开始，在支持安装内核的app（比如[KernelFlasher](https://github.com/capntrips/KernelFlasher)）中安装Melt Kernel时，如果检测到系统语言为简体中文，那么提示文本将以简体中文显示（由于目前没有稳定且准确的检测TWRP/OFRP语言的方式，因此在recovery模式安装Melt Kernel时，提示文本仍然只能以英文显示）。
 
