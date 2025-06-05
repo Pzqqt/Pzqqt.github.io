@@ -545,6 +545,12 @@ diff --git a/kernel/apk_sign.c b/kernel/apk_sign.c
 - 简化了触屏驱动，移除了从未使用的手写笔的支持，理论上触屏响应速度会更快。
 - 进一步过滤垃圾内核日志，现在在启用[disable_audit_log](https://github.com/Pzqqt/android_kernel_xiaomi_marble/commit/1ce5658804ebc1cb2c61a1a475d59d7ecf9c2a32)之后，不仅内核产生的avc日志会被过滤，用户空间产生的avc日志也会被过滤。
 
-## Melt Kernel v3.9（2025.??.??）
+## Melt Kernel v3.9（2025.06.04）
+
+你想让我说什么？
+
+没啥好说的，常规更新。
+
+## Melt Kernel v4.0（2025.??.??）
 
 *（未完待续...）*
