@@ -575,6 +575,8 @@ v4.0最重大的一个变化就是：将几乎所有的内核模块都替换成�
 
 {% include pure-img-responsive.html url="/images/e48/p4.jpg" a_class="pure-u-md-2-3" %}
 
+> ZRAM读取速度可以理解为解压缩速度，ZRAM写入速度可以理解为压缩速度。
+
 很多其他的第三方内核又跟风加了lz4的arm64 v8 ASM解压缩优化，我试着加上之后，编译，刷入，开机，很快就看到erofs解压缩系统分区时报错的内核log，因此加我是不可能加了，但我还是进行了一次benchmark，结果是和lz4基本一模一样，那就更没有必要加了。
 
 {% include pure-img-responsive.html url="/images/e48/p5.jpg" a_class="pure-u-md-2-3" %}
@@ -583,7 +585,29 @@ v4.0最重大的一个变化就是：将几乎所有的内核模块都替换成�
 
 最后再吐槽一下v5.10.239，修代码合并冲突和KMI修了一个多小时，修在LineageOS上不开机又修了3个多小时（ADB起不来，minidump也没记录日志，只能靠二分法修，见了鬼了），晚上9点开始干，修完已经是凌晨两点半，我只想说一个字：淦！
 
-## Melt Kernel v4.1（2025.??.??）
+## Melt Kernel v4.1（2025.08.29）
+
+v4.1比以往时候来得稍晚一些，主要还是因为v5.10.241一直拖了一个多月才出。
+
+这个版本取消了v4.0引入的非官方KernelSU支持，因为这些非官方KernelSU已经开始大幅魔改kernel层的源代码，强行兼容并不可取。SukiSU-Ultra也搞了一个自定义管理器app签名的功能，甚至支持同时使用多个管理器app（意义在哪？）；KernelSU-Next就更厉害了，直接跳版本号，与原版KernelSU分道扬镳。
+
+8月6日那天，MiCode把 `dijun-v-oss` 的内核开源代码分支给删了，按照惯例，应该是小米又不小心泄露了啥不该开源的东西，但小米你删得了分支删不了commit id。虽然 `dijun-v-oss` 分支很早以前（6月23日）就开源了，但刚开的时候我没怎么在意，现在借着这个契机仔细看看。扒了一圈，果然发现了一些好东西，像是millet的源码、cpq的源码、甚至还有一些一加和猾伪的东西。
+
+> `dijun-v-oss` 分支在8月16日重新开源了，将新旧源码进行比较，发现相比于之前只是删了一部分疑似camera log的源码，呃...就这？
+
+其中有一个lz4p引起了我的注意，看起来像又是一个加了arm64 v8 ASM解压缩优化的修改版lz4，我打算移植过来，并做一遍benchmark看看效果如何。
+
+移植的过程意外地很简单，复制过来然后加上Kconfig，再写个Makefile就行了。遗憾的是benchmark结果很糟糕，ZRAM读取速度相比lz4直接腰斩。
+
+{% include pure-img-responsive.html url="/images/e48/p6.jpg" a_class="pure-u-md-2-3" %}
+
+最后我还是决定不添加lz4p。
+
+但也并不是毫无收获，在8月8日发布的 `bixi-v-oss` 分支中，我找到了一个名为 [kshrink_slabd](https://github.com/MiCode/Xiaomi_Kernel_OpenSource/tree/bixi-v-oss/drivers/xiaomi/kshrink_slabd) 的内核模块，据Gemini描述，它的作用是优化内存管理中的slab缓存回收机制，通过将其从同步阻塞操作转变为异步后台任务来减少系统在内存紧张时的卡顿。看起来是个好东西，没啥好说的，直接移植过来。（有意思的是，事后我在GitHub上搜索了一下kshrink_slabd，才发现这玩意疑似原先是一加的东西）
+
+其他就没什么值得说的了，常规更新。
+
+## Melt Kernel v4.2（2025.??.??）
 
 *（未完待续...）*
 
