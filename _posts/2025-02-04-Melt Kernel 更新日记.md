@@ -607,7 +607,21 @@ v4.1比以往时候来得稍晚一些，主要还是因为v5.10.241一直拖了�
 
 其他就没什么值得说的了，常规更新。
 
-## Melt Kernel v4.2（2025.??.??）
+## Melt Kernel v4.2（2025.10.02）
+
+上次扒 `bixi-v-oss` 源代码的时候，还有一个意外收获：[mi_async_reclaim](https://github.com/MiCode/Xiaomi_Kernel_OpenSource/blob/bixi-v-oss/drivers/staging/mi_async_reclaim/mi_async_reclaim.c)。大致看了下源代码，不对呀，这玩意怎么和kshrink_slabd那么像？在GitHub搜了一下，好家伙，原来又是一加的东西被小米抄了过来改了个名字，原先是叫 `kshrink_lruvecd`。不过这样我也不用费事移植了，可以从一加开源的mt6983内核源码中直接拿。
+
+然后是Kcompressd，这个东西实际上我几个月前就因为 [phoronix的这篇新闻](https://www.phoronix.com/news/Linux-Kcompressd-Memory) 关注到了，当时也试着移植，但由于5.10内核的内存管理子系统还是在用page而不是较为先进的folio，移植起来有点困难，因此暂时搁置。后来arter97大佬也在自己维护的Nothing Phone 2内核中 [移植了Kcompressd](https://github.com/arter97/android_kernel_nothing_sm8475/commit/12490bd49e8b86bff4010c9694222ec1da2585b8)，那我就cherry-pick过来。当然，由于往struct pglist_data添加了3个新的成员，因此毫无意外又得修KMI，好在是不算太难修。
+
+另外，v4.2版本也修好了一个从v2.0版本开始就存在的远古bug，该bug导致系统杀后台变得更加频繁。具体来说，是 [这个commit](https://github.com/Pzqqt/android_kernel_xiaomi_marble/commit/bdd1a8124e284cdd9f5762bc51bb109333a10348) 大幅提高了 `min_free_kbytes` 允许的最小值，使得系统保留了过多的RAM，进而导致频繁地杀后台。说实话我不是很懂Linux的内存管理，但小米一直都在使用原汁原味的GKI，因此无论如何这样改都是不正确的，果断revert。
+
+在开发过程中我也实验性地移植并添加了 [BORE CPU Scheduler](https://github.com/firelzrd/bore-scheduler)，~~本来是想着移植eevdf的说~~。由于原作者唯独没给5.10内核做移植（5.15有，5.4也有），因此只能从5.15向后移植了。发布内测版本之后，内测用户纷纷表示“感知不强”，我自己跑Geekbench 6也没发现分数有啥变化，决定上点压力用烤机软件CPU Throttling Test测一测，测到一半发现问题了：系统直接卡死，触屏不响应，连上电脑ADB仍然能识别，但执行个命令得等半分多钟才有结果。起初我以为是烤机时设备过热导致的，但换回旧版本内核就没问题。虽然内测用户们都说日用时没发生过卡死问题，但在我看来有问题就是有问题，是不可接受的，因此果断抛弃。
+
+> 小插曲：在CPU Throttling Test烤机测试中，等设备充分冷却后我用带有BORE的内核第二次跑烤机测试，这下算是顺利跑完了，但我设定好的烤5分钟，结果烤完之后app主界面显示烤了5分19秒。🤷‍♂️
+
+剩下就没什么值得说的了，依旧是常规更新。
+
+## Melt Kernel v4.3（2025.??.??）
 
 *（未完待续...）*
 
