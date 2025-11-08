@@ -621,7 +621,19 @@ v4.1比以往时候来得稍晚一些，主要还是因为v5.10.241一直拖了�
 
 剩下就没什么值得说的了，依旧是常规更新。
 
-## Melt Kernel v4.3（2025.??.??）
+## Melt Kernel v4.3（2025.10.30）
+
+常规更新，但有几个小细节值得提一下。
+
+一个是revert了所有之前添加的f2fs优化相关的提交，因为我在LineageOS用CPDT做benchmark时发现它们会导致随机读写性能大幅下降。最主要的原因可能还是因为 [f2fs: Force strict fsync mode](https://github.com/Pzqqt/android_kernel_xiaomi_marble/commit/c755929163304fb67a66a0ed85ee462628b5c83f) 这个提交，但仔细想了一下还是决定把所有f2fs相关的提交都revert了。
+
+另一个是 [把“per memcg lru lock”补丁集给revert了](https://github.com/Pzqqt/android_kernel_xiaomi_marble/commit/3e2df0c884c7fb1215278b1a3379a937d4a60269)，比起感知不强的优化来说还是维持KMI稳定更加重要。
+
+然后，如果是在除HyperOS以外的rom上安装本内核的话，就移除掉所有migt相关的内核模块，并把 `sched-walt.ko` 替换为开源的，这或许能够解决设备容易发热的问题。
+
+最后，小米在 `OS2.0.210.0.VMRCNXM` 中又给firmware里的adsp2改了一手，问题还是老问题，修法还是老修法。这次 `/sys/class/qcom-battery` 多出来了4个节点： `max_life_vol` `max_life_temp` `over_vol_duration` `batt_sn`，前面三个节点都是字面意思，最后一个 `batt_sn` 可就有意思了：读取这个节点会返回电池的序列号，莫非小米开始检测识别换了第三方电池的设备了吗？
+
+## Melt Kernel v4.4（2025.??.??）
 
 *（未完待续...）*
 
