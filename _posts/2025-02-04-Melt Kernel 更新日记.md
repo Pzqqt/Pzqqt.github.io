@@ -633,7 +633,29 @@ v4.1比以往时候来得稍晚一些，主要还是因为v5.10.241一直拖了�
 
 最后，小米在 `OS2.0.210.0.VMRCNXM` 中又给firmware里的adsp2改了一手，问题还是老问题，修法还是老修法。这次 `/sys/class/qcom-battery` 多出来了4个节点： `max_life_vol` `max_life_temp` `over_vol_duration` `batt_sn`，前面三个节点都是字面意思，最后一个 `batt_sn` 可就有意思了：读取这个节点会返回电池的序列号，莫非小米开始检测识别换了第三方电池的设备了吗？
 
-## Melt Kernel v4.4（2025.??.??）
+## Melt Kernel v4.4（2025.12.07）
+
+和往常一样依旧是常规更新：合Linux上游、合CLO上游、升级clang、小修小补小优化...
+
+然后是KernelSU，这个值得展开说一说。
+
+在这期间，KernelSU经历了两次大版本更新：v2.0.0版本大幅重构了hook方式，避免各种测信道攻击；v3.0.0版本则是引入了 [metamodule](https://kernelsu.org/guide/metamodule.html)，并且搞了个 [官方的模块repository](https://github.com/KernelSU-Modules-Repo)。
+
+重构hook方式带来的好处已经提到，坏处就是以前那一套manual hook方式不再能用了（除非大幅修改KernelSU的源码）。Manual hook之所以流行，一个是为了减小开销，但实际上kprobe在现代的Android设备上使用非常普遍，因此kprobe开销固然是有，但可以忽略不计；另一个是为了提高隐藏效果，但重构hook方式同样也带来了提高隐藏效果的好处。
+
+至于为什么Melt Kernel v4.4放弃了manual hook和susfs，我在release notes里有细说，在这里就再简单概况一下：理论上是能够把manual hook加回来，但如果代价是大幅修改KernelSU源代码的话，那就不值得；不添加susfs主要还是考虑到稳定性，毕竟KernelSU的源代码仍在积极地变更。
+
+关于meatamodule功能，简单来说就是把KernelSU中负责模块挂载的功能独立出来，你想用原先官方的overlayfs挂载方式就用overlayfs的metamodule，你想用原先MKSU的magic mount就用magic mount的metamodule，如果你不需要用模块挂载任何文件，那甚至可以不用装metamodule。
+
+metamodule功能的引入也就意味着你不再需要为了magic mount而用MKSU，并且现在的MKSU已经变得和其他非官方KernelSU一样带有实验性质，因此，Melt Kernel v4.4不再支持MKSU 的apk签名密钥。
+
+然后是官方的模块repository，我并不看好，回想一下以前Magisk的模块仓库是怎么没了的。
+
+另外值得一提的是，KernelSU从v3.0.0开始官方力推LKM安装方式，不再像以前一样在releases中提供内置KernelSU的GKI，并且声称“GKI模式仅用于测试环境，不建议用于日常使用”。关于这一点我是举双手双脚赞成的，官方终于关注到了KernelSU的碎片化问题并开始着手解决，内核开发者终于可以从各种五花八门的KernelSU变体版中摆脱出来而更加专注于维护内核本身，~~另一方面，不遵守GKI规范的OSS kernel自然是用不了LKM，反正我是表示喜闻乐见。~~
+
+就写这些吧。
+
+## Melt Kernel v4.5（2026.??.??）
 
 *（未完待续...）*
 
