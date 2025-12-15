@@ -645,7 +645,7 @@ v4.1比以往时候来得稍晚一些，主要还是因为v5.10.241一直拖了�
 
 至于为什么Melt Kernel v4.4放弃了manual hook和susfs，我在release notes里有细说，在这里就再简单概况一下：理论上是能够把manual hook加回来，但如果代价是大幅修改KernelSU源代码的话，那就不值得；不添加susfs主要还是考虑到稳定性，毕竟KernelSU的源代码仍在积极地变更。
 
-关于meatamodule功能，简单来说就是把KernelSU中负责模块挂载的功能独立出来，你想用原先官方的overlayfs挂载方式就用overlayfs的metamodule，你想用原先MKSU的magic mount就用magic mount的metamodule，如果你不需要用模块挂载任何文件，那甚至可以不用装metamodule。
+关于metamodule功能，简单来说就是把KernelSU中负责模块挂载的功能独立出来，你想用原先官方的overlayfs挂载方式就用overlayfs的metamodule，你想用原先MKSU的magic mount就用magic mount的metamodule，如果你不需要用模块挂载任何文件，那甚至可以不用装metamodule。
 
 metamodule功能的引入也就意味着你不再需要为了magic mount而用MKSU，并且现在的MKSU已经变得和其他非官方KernelSU一样带有实验性质，因此，Melt Kernel v4.4不再支持MKSU 的apk签名密钥。
 
