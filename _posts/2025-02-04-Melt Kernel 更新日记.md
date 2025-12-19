@@ -647,11 +647,11 @@ v4.1比以往时候来得稍晚一些，主要还是因为v5.10.241一直拖了�
 
 关于metamodule功能，简单来说就是把KernelSU中负责模块挂载的功能独立出来，你想用原先官方的overlayfs挂载方式就用overlayfs的metamodule，你想用原先MKSU的magic mount就用magic mount的metamodule，如果你不需要用模块挂载任何文件，那甚至可以不用装metamodule。
 
-metamodule功能的引入也就意味着你不再需要为了magic mount而用MKSU，并且现在的MKSU已经变得和其他非官方KernelSU一样带有实验性质，因此，Melt Kernel v4.4不再支持MKSU 的apk签名密钥。
+metamodule功能的引入也就意味着你不再需要为了magic mount而用MKSU，并且现在的MKSU已经变得和其他非官方KernelSU一样带有实验性质，因此，Melt Kernel v4.4不再支持MKSU的apk签名密钥。
 
 然后是官方的模块repository，我并不看好，回想一下以前Magisk的模块仓库是怎么没了的。
 
-另外值得一提的是，KernelSU从v3.0.0开始官方力推LKM安装方式，不再像以前一样在releases中提供内置KernelSU的GKI，并且声称“GKI模式仅用于测试环境，不建议用于日常使用”。关于这一点我是举双手双脚赞成的，官方终于关注到了KernelSU的碎片化问题并开始着手解决，内核开发者终于可以从各种五花八门的KernelSU变体版中摆脱出来而更加专注于维护内核本身，~~另一方面，不遵守GKI规范的OSS kernel自然是用不了LKM，反正我是表示喜闻乐见。~~
+另外值得一提的是，KernelSU从v3.0.0开始官方力推LKM安装方式，不再像以前一样在releases中提供内置KernelSU的GKI，并且表示“GKI模式仅用于测试环境，不建议用于日常使用”。关于这一点我是举双手双脚赞成的，官方终于关注到了KernelSU的碎片化问题并开始着手解决，内核开发者终于可以从各种五花八门的KernelSU变体版中摆脱出来而更加专注于维护内核本身，~~另一方面，不遵守GKI规范的OSS kernel自然是用不了LKM，反正我是表示喜闻乐见。~~
 
 就写这些吧。
 
