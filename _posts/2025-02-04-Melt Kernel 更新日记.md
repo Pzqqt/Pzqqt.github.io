@@ -677,7 +677,11 @@ metamodule功能的引入也就意味着你不再需要为了magic mount而用MK
 
 那么，下次更新再见！
 
-## Melt Kernel v4.6（2026.??.??）
+## Melt Kernel v4.6（2026.03.05）
+
+没啥值得说的常规更新。
+
+## Melt Kernel v4.7（2026.??.??）
 
 *（未完待续...）*
 
