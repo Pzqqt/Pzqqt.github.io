@@ -65,18 +65,18 @@ SwapCached:       129024 kB
 
 那么， `wmarks_high` `wmarks_mid` `wmarks_low` 这仨参数该怎么调整比较好呢？这个要具体情况具体分析，根据你的设备的内存总量和日常使用时的内存占用情况自行调整，并没有“一招鲜吃遍天”的参数，但我仍然可以提供一些建议：
 
-1. 不要把 `wmarks_low` 调得太低，这会使得高内存压力时和系统的回收逻辑发送冲突。建议不要低于5%。
+1. 不要把 `wmarks_low` 调得太低，这会使得设备在高内存压力时和系统的回收逻辑发生冲突。建议不要低于5%。
 2. 不要把 `wmarks_high` `wmarks_mid` 调得太高，这会导致Damon reclaim长时间工作还达不到“业绩”从而导致耗电量增加。根据你的设备的内存总量， `wmarks_high` 建议20~30%， `wmarks_mid` 建议比 `wmarks_high` 少5%。
 
 `wmarks_interval` 参数默认是5秒，较为合适，将 `wmarks_interval` 调小可以使得Damon reclaim监测MemFree更加频繁，让Damon reclaim反应更加迅速，避免出现MemFree急剧减少但Damon reclaim进程还在sleep的情况。你可以试着将 `wmarks_interval` 调为1秒，这并不会导致明显的耗电量增加。
 
 ### min_age
 
-`min_age` 参数默认是120秒，但对于Android设备来说这个值明显偏大了。Android应用切换较为频繁，如果设置太短（<10秒），会导致你刚切到后台的应用被立刻回收，产生明显的二次启动延迟；如果太长（如默认的120秒），则会导致内存回收不够及时。对于内存压力较大的低端机，可以尝试30秒；对于 8GB+内存的设备，建议60秒。
+`min_age` 参数默认是120秒，但对于Android设备来说这个值明显偏大了。Android应用切换较为频繁，如果设置太短（<10秒），会导致你刚切到后台的应用被立刻回收，产生明显的二次启动延迟；如果太长（如默认的120秒），则会导致内存回收不够及时。对于内存压力较大的低端机，可以尝试30秒；对于8GB+内存的设备，建议60秒。
 
 ### quota
 
-`quota_reset_interval_ms` `quota_ms` `quota_sz`，这三个参数的效果用一句话概况就是：Damon reclaim在 `quota_reset_interval_ms` 毫秒内不会花费超过 `quota_ms` 毫秒的时间去回收内存，且在 `quota_reset_interval_ms` 毫秒内回收的内存不会超过 `quota_sz` 字节。
+`quota_reset_interval_ms` `quota_ms` `quota_sz` 这三个参数的效果用一句话概况就是：Damon reclaim在 `quota_reset_interval_ms` 毫秒内不会花费超过 `quota_ms` 毫秒的时间去回收内存，且在 `quota_reset_interval_ms` 毫秒内回收的内存不会超过 `quota_sz` 字节。
 
 调整 `quota_ms` 和 `quota_sz` 的意义在于限制Damon reclaim的CPU性能消耗和IO性能消耗。
 
