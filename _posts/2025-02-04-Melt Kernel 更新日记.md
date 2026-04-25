@@ -681,7 +681,29 @@ metamodule功能的引入也就意味着你不再需要为了magic mount而用MK
 
 没啥值得说的常规更新。
 
-## Melt Kernel v4.7（2026.??.??）
+## Melt Kernel v4.7（2026.04.18）
+
+借着marble的HyperOS即将停更的机会，我迅速逃离了陪（zhe）伴（mo）了我3年的MIUI/HyperOS，转投类原生阵营，并且把自己的12+512 marble从备用机改为主力机。~~这段话好像我之前在哪说过...~~
+
+这次整了个好活：backport了最新的 [ADIOS v3.2.0](https://github.com/firelzrd/adios/blob/f3d5bbb57c2052973fc35615cfcf659d388118b8/patches/testing/0001-linux6.12.44-ADIOS-3.2.0.patch)。很久以前就有人让我backport，但我大致看了一眼感觉不好整，因此简单试了下就放弃了，后来大概是感觉很长时间没整过活了吧就想着再试试。真正上手了才发现backport起来还算简单，直接编译，哪里错了修哪里，再对照着upstream的代码找差异并修改代码就行了。修了两三个小时，可算是把内核编译出来了，然后刷进设备，然后切换IO调度器，然后很快啊，内核就panic了... 看了下日志，是有两处空指针异常，其中一处是缺upstream的补丁，[把补丁摘过来就解决了](https://github.com/Pzqqt/android_kernel_xiaomi_marble/compare/5a9e46c6783ec00f3bc59f020eeb226af954a024...a2d80c60935045ab262109ecc36b7fc1e7a47428)；另一处还不清楚原因，只能先 [简单地加个判断](https://github.com/Pzqqt/android_kernel_xiaomi_marble/commit/cb8baed1166739f5f8ff438fd04f853ec10aecf7)。后来我又发现，其实不摘upstream的补丁的话也能修，并且这样修的话还能将ADIOS编译成android12-5.10 GKI通用的vendor module，KMI恰好有模块所需的所有符号，因此在Melt Kernel v4.7发布之前我就先做了一个 [Magisk/KernelSU模块](https://t.me/pzqqt_c/6910) 让大家都尝尝鲜。至于ADIOS用起来怎么样嘛，说实话我是感觉不出来和ssg的差别。
+
+另外，这次更新还加上了ipset和ip6tables NAT支持，同样是很早以前就有人让我加上，但我实在不理解它们有什么用，因此就一直搁置着。后来在朋友的推荐下... （此处省略若干字，懂的都懂）
+
+其他就没什么可说的了。
+
+最后，考虑到 [未来android12-5.10不再支持Android 17 QPR1及以后的版本](https://source.android.com/docs/core/architecture/kernel/android-common#compatibility-matrix)，因此以后或许只能放弃GKI改用OSS kernel了（因为后者不考虑KMI稳定性，可以自由地backport Android 17所需要的内核补丁）。再加上KernelSU某次更新之后能够让LKM兼容OSS kernel了，最后一道障碍也已经被打通，是时候提前做准备了，因此Bouquet Kernel诞生了。
+
+Bouquet Kernel的源码从Melt Kernel分支而来，因此具有Melt Kernel几乎所有的特性，同时还具有以下特点：
+
+1. 内核、dtb、dtbo、以及所有的内核模块均从源码编译，不包含任何闭源成分；~~这意味着我终于可以光明正大地发布安装包并给它标上我的名字了（笑）~~
+2. 仅与最新的AOSP rom兼容（AOSPA和NeotericOS除外）；
+3. 就像OSS kernel一样，不再遵循GKI规范（但我也不会刻意地去破坏KMI，毕竟还要考虑兼容KernelSU LKM）；
+4. 由于第4点原因，Bouquet Kernel可以大胆移植一些Melt Kernel不具有的特性，比如bbr3和per memcg lru lock；
+5. 内核镜像和内核模块均使用最先进的LLVM编译。
+
+虽然我现在的工作重心已经转移到了Bouquet Kernel，但Melt Kernel不会因此停止更新，两者同时维护并不会明显地增加我的工作量。历经了将近3年的持续更新，Melt Kernel已经有了众多的用户和爱好者，我肯定是不会轻易抛弃。以后Melt Kernel和Bouquet Kernel会一同更新一同release。
+
+## Melt Kernel v4.?（2026.??.??）
 
 *（未完待续...）*
 
