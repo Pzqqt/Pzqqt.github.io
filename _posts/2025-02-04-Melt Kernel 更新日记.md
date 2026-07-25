@@ -703,7 +703,25 @@ Bouquet Kernel的源码从Melt Kernel分支而来，因此具有Melt Kernel几�
 
 虽然我现在的工作重心已经转移到了Bouquet Kernel，但Melt Kernel不会因此停止更新，两者同时维护并不会明显地增加我的工作量。历经了将近3年的持续更新，Melt Kernel已经有了众多的用户和爱好者，我肯定是不会轻易抛弃。以后Melt Kernel和Bouquet Kernel会一同更新一同release。
 
-## Melt Kernel v4.?（2026.??.??）
+## Melt Kernel v4.9（2026.06.04）
+
+v4.8版本被我华丽地跳过了，别问，问就是不好听。
+
+这个版本只是做了点微小的工作，一个是针对ADIOS的一点修复，另一个是为Bouquet Kernel补上了缺失的bootinfo模块。
+
+至于bootinfo模块的作用嘛，有了它之后你就可以在 `/sys/bootinfo` 下面查看设备的powerup reason和poweroff reason了，方便你检查设备意外重启的原因。
+
+## Melt Kernel v5.0（2026.07.25）
+
+v5.0更新内容有几点值得提一下。
+
+一个是参考OSS kernel补上了epoll_pwait2 syscall支持，对于AOSP rom来说这是个必要的修复，不然logcat会经常疯狂刷 `epoll_wait function not implemented` 的日志。
+
+另一个是允许用户在安装过程中选择是否需要ntsync支持，其实对Melt Kernel的用户来说这个无关紧要，因为我几个月前就已经发了一个android12-5.10 GKI通用的 `ntsync.ko`，如果用户确实有需要，可以自己下载下来然后insmod，但考虑到Bouquet Kernel不是GKI，用不了我发的那个 `ntsync.ko`，因此就把它做成一个安装选项了。什么？你问我ntsync有啥用？自己查去。
+
+最后是添加了对Droidspaces的支持，考虑到官方已经停止了对marble的维护，并且5.10内核到年底就要EOL了，因此我现在应该尽量满足用户的需求。
+
+## Melt Kernel v5.?（2026.??.??）
 
 *（未完待续...）*
 
